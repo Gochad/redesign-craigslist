@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 const SearchInput = styled.input`
   padding: 5px;
-  margin: 40px 40px;
+  margin: 90px;
+  height: 10px;
 `;
 
 interface SearchBarProps {

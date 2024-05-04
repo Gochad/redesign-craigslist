@@ -10,6 +10,7 @@ import { AppContainer } from './styles';
 
 const Content = styled.div`
   margin-top: 80px;
+  display: flex;
 `;
 
 const HomePage = () => {
