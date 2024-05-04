@@ -2,21 +2,55 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Card = styled.div`
-  border: 1px solid #ddd;
   padding: 20px;
-  margin: 10px;
   text-align: center;
-  cursor: pointer;
+  border: 1px solid #ddd;
+  height: auto;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const SubcategoryList = styled.ul`
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+`;
+
+const SubcategoryItem = styled.li`
+  padding: 5px 0;
+`;
+
+const StyledLink = styled.a`
+  color: #000; // Ustaw kolor linku
+  text-decoration: none; // Usuń podkreślenie
+
+  &:hover {
+    text-decoration: underline; // Dodaj podkreślenie przy najechaniu
+  }
 `;
 
 interface CategoryCardProps {
-  title: string;
+  category: CategoryData;
+  style?: React.CSSProperties;
 }
 
-const CategoryCard = ({ title }: CategoryCardProps) => {
+const CategoryCard = ({ category, style }: CategoryCardProps) => {
   return (
-    <Card>
-      <h3>{title}</h3>
+    <Card style={style}>
+      <h3><StyledLink href={`/categories/${category.name}`}>{category.name}</StyledLink></h3>
+      <SubcategoryList>
+        {category.subcategories.map(subcategory => (
+          <SubcategoryItem key={subcategory}>
+            <StyledLink href={`/subcategories/${subcategory}`}>{subcategory}</StyledLink>
+          </SubcategoryItem>
+        ))}
+      </SubcategoryList>
     </Card>
   );
 };

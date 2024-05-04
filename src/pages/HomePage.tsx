@@ -1,21 +1,21 @@
 import React from 'react';
-import CategoryCard from '../components/CategoryCard';
+import CategoryList from '../components/Categories';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LeftList from '../components/LeftList';
 
+import { AppContainer } from './styles';
+
+
 const HomePage = () => {
-  const categories = ['Autos', 'Real Estate', 'Jobs', 'Electronics'];
 
   return (
-    <div>
+    <AppContainer>
       <Header></Header>
       <LeftList></LeftList>
-      {categories.map(category => (
-        <CategoryCard key={category} title={category} />
-      ))}
+      <CategoryList></CategoryList>
       <Footer></Footer>
-    </div>
+    </AppContainer>
   );
 };
 
