@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import LocationSwitcher from './LocationSwitcher';
 
@@ -14,10 +15,18 @@ const HeaderContainer = styled.div`
   top: 0;
 `;
 
+const Title = styled.h1`
+  margin: 0;
+  color: black;
+  text-decoration: none; 
+`;
+
 const Header = () => {
   return (
     <HeaderContainer>
-      <h1>Craigslist Redesign</h1>
+      <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Title>Craigslist Redesign</Title>
+      </Link>
       <LocationSwitcher />
     </HeaderContainer>
   );

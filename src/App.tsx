@@ -10,6 +10,9 @@ import AvoidScamsPage from './pages/HeaderLinks/AvoidScams';
 import PersonalSafetyTipsPage from './pages/HeaderLinks/PersonalSafetyTips';
 import AboutCraigslistPage from './pages/HeaderLinks/AboutCraigslist';
 import BestOfCraigslistPage from './pages/HeaderLinks/BestOfCraigslist';
+import CareersPage from './pages/HeaderLinks/Careers';
+import WhatsNewPage from './pages/HeaderLinks/WhatsNew';
+import SystemStatusPage from './pages/HeaderLinks/SystemStatus';
 
 function App() {
   return (
@@ -26,7 +29,11 @@ function App() {
                 <Route path="/safety-tips" element={<PersonalSafetyTipsPage/>} />
                 <Route path="/craigslist-about" element={<AboutCraigslistPage/>} />
                 <Route path="/best-of-craigslist" element={<BestOfCraigslistPage/>} />
-
+                <Route path="/careers" element={<CareersPage/>} />
+                <Route path="/whats-new" element={<WhatsNewPage/>} />
+                <Route path="/system-status" element={<SystemStatusPage/>} />
+                <Route path="/charity" element={<SystemStatusPage/>} />
+                <Route path="/philanthropies" element={<SystemStatusPage/>} />
             </Routes>
         </div>
     </Router>
