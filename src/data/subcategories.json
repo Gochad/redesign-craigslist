@@ -1,0 +1,109 @@
+[
+    {
+        "id": 1,
+        "name": "Toy Car",
+        "price": "$5",
+        "location": "Muncie",
+        "description": "Small plastic car, great condition."
+    },
+    {
+        "id": 2,
+        "name": "Building Blocks",
+        "price": "$15",
+        "location": "Muncie",
+        "description": "Colorful building blocks, barely used."
+    },
+    {
+        "id": 3,
+        "name": "Doll House",
+        "price": "$30",
+        "location": "Muncie",
+        "description": "Large wooden doll house, some accessories included."
+    },
+    {
+        "id": 4,
+        "name": "Action Figure",
+        "price": "$8",
+        "location": "Muncie",
+        "description": "Superhero action figure, light wear and tear."
+    },
+    {
+        "id": 5,
+        "name": "Puzzle Set",
+        "price": "$10",
+        "location": "Muncie",
+        "description": "500 piece jigsaw puzzle, all pieces accounted for."
+    },
+    {
+        "id": 6,
+        "name": "Train Set",
+        "price": "$25",
+        "location": "Muncie",
+        "description": "Electric train set, tracks included, barely used."
+    },
+    {
+        "id": 7,
+        "name": "Science Kit",
+        "price": "$20",
+        "location": "Muncie",
+        "description": "Kids science experiment kit, some chemicals used."
+    },
+    {
+        "id": 8,
+        "name": "Stuffed Bear",
+        "price": "$7",
+        "location": "Muncie",
+        "description": "Large teddy bear, very cuddly, in excellent condition."
+    },
+    {
+        "id": 9,
+        "name": "Bicycle",
+        "price": "$50",
+        "location": "Muncie",
+        "description": "16\" kids bicycle, blue, good condition."
+    },
+    {
+        "id": 10,
+        "name": "Board Games",
+        "price": "$12",
+        "location": "Muncie",
+        "description": "Assortment of 3 board games, complete sets."
+    },
+    {
+        "id": 11,
+        "name": "Play Tent",
+        "price": "$20",
+        "location": "Muncie",
+        "description": "Kids play tent, easy setup, like new."
+    },
+    {
+        "id": 12,
+        "name": "Remote Control Car",
+        "price": "$35",
+        "location": "Muncie",
+        "description": "Fast remote control car, battery operated, minor scratches."
+    },
+    {
+        "id": 13,
+        "name": "Soccer Ball",
+        "price": "$10",
+        "location": "Muncie",
+        "description": "Standard size soccer ball, used, good condition."
+    },
+    {
+        "id": 14,
+        "name": "Skateboard",
+        "price": "$20",
+        "location": "Muncie",
+        "description": "Junior skateboard, suitable for beginners, moderate wear."
+    },
+    {
+        "id": 15,
+        "name": "Magic Tricks Set",
+        "price": "$15",
+        "location": "Muncie",
+        "description": "Magic tricks set for beginners, instructional DVD included."
+    }
+]
+
+  
