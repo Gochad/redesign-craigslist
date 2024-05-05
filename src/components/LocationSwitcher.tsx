@@ -24,7 +24,7 @@ const Select = styled.select`
 const LocationSwitcher = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
-  const locations = locationsData as Location[];
+  const locations: Location[] = locationsData as Location[];
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -34,7 +34,7 @@ const LocationSwitcher = () => {
     setSelectedLocation(event.target.value);
   };
 
-  const renderOptions = (location: Location, prefix: string = '') => {
+  const renderOptions = (location: Location, prefix: string) => {
     const options = [
       <option key={location.id} value={location.id}>
         {prefix + location.name}
@@ -64,7 +64,7 @@ const LocationSwitcher = () => {
       />
       <Select value={selectedLocation} onChange={handleChange}>
         <option value="">Choose location</option>
-        {filteredLocations.map(location => renderOptions(location))}
+        {filteredLocations.map(location => renderOptions(location, ''))}
       </Select>
     </Container>
   );

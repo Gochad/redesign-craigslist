@@ -2,9 +2,24 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const SearchInput = styled.input`
-  padding: 5px;
-  margin: 90px;
-  height: 10px;
+  padding: 12px 20px;
+  margin: 20px 40px;
+  display: block;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    border-color: #bbb;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+  }
 `;
 
 interface SearchBarProps {
