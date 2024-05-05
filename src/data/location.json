@@ -1,17 +1,47 @@
 [
     {
-    "id": "usa",
-    "name": "USA",
-    "children": [
-        { "id": "nyc", "name": "New York" },
-        { "id": "la", "name": "Los Angeles" }
-    ]
+        "id": "usa",
+        "name": "USA",
+        "children": [
+            { "id": "nyc", "name": "New York" },
+            { "id": "la", "name": "Los Angeles" },
+            { "id": "chi", "name": "Chicago" },
+            { "id": "hou", "name": "Houston" },
+            { "id": "pho", "name": "Phoenix" },
+            { "id": "phi", "name": "Philadelphia" }
+        ]
     },
     {
-    "id": "canada",
-    "name": "Canada",
-    "children": [
-        { "id": "toronto", "name": "Toronto" }
-    ]
+        "id": "canada",
+        "name": "Canada",
+        "children": [
+            { "id": "toronto", "name": "Toronto" },
+            { "id": "montreal", "name": "Montreal" },
+            { "id": "vancouver", "name": "Vancouver" },
+            { "id": "calgary", "name": "Calgary" },
+            { "id": "edmonton", "name": "Edmonton" }
+        ]
+    },
+    {
+        "id": "uk",
+        "name": "United Kingdom",
+        "children": [
+            { "id": "london", "name": "London" },
+            { "id": "manchester", "name": "Manchester" },
+            { "id": "birmingham", "name": "Birmingham" },
+            { "id": "leeds", "name": "Leeds" },
+            { "id": "glasgow", "name": "Glasgow" }
+        ]
+    },
+    {
+        "id": "australia",
+        "name": "Australia",
+        "children": [
+            { "id": "sydney", "name": "Sydney" },
+            { "id": "melbourne", "name": "Melbourne" },
+            { "id": "brisbane", "name": "Brisbane" },
+            { "id": "perth", "name": "Perth" },
+            { "id": "adelaide", "name": "Adelaide" }
+        ]
     }
 ]

@@ -10,7 +10,33 @@
     {
         "title": "Customer Support Specialist",
         "description": "Provide outstanding support to our users and help solve their issues."
+    },
+    {
+        "title": "Marketing Coordinator",
+        "description": "Coordinate and implement marketing strategies that align with our business goals."
+    },
+    {
+        "title": "Sales Executive",
+        "description": "Drive sales strategies to enhance the profitability of the company."
+    },
+    {
+        "title": "Human Resources Manager",
+        "description": "Manage HR initiatives and ensure compliance with employment laws."
+    },
+    {
+        "title": "Data Scientist",
+        "description": "Analyze complex data to help guide our decisions and improve our services."
+    },
+    {
+        "title": "Network Security Engineer",
+        "description": "Ensure the security of our digital networks and protect data from potential threats."
+    },
+    {
+        "title": "UI/UX Designer",
+        "description": "Design and enhance user interfaces for the best user experience."
+    },
+    {
+        "title": "Content Writer",
+        "description": "Create engaging content for our platforms to educate and attract users."
     }
 ]
-
-  

@@ -2,34 +2,97 @@
     {
         "date": "18 Jan 2024",
         "title": "JURASSIC PARK JEEP!!!!",
-        "category": "cars+trucks",
-        "area": "lake city"
+        "category": "auto parts",
+        "area": "lake city",
+        "description": "Authentic Jurassic Park Jeep replica, fully restored and operational.",
+        "price": "$20000"
     },
     {
         "date": "17 Jan 2024",
         "title": "Spectacular 2 Bedroom Plus Den Church Conversion Loft",
-        "category": "real estate - by broker",
-        "area": "toronto"
+        "category": "real estate for sale",
+        "area": "toronto",
+        "description": "Stunning church loft conversion, high ceilings with modern finishes, prime location.",
+        "price": "$750000"
     },
     {
         "date": "31 Oct 2023",
         "title": "Dog Poop Girl",
         "category": "missed connections",
-        "area": "portland"
+        "area": "portland",
+        "description": "Seeking the woman walking her beagle on 5th Ave last Thursday - you forgot your dog's poop bag.",
+        "price": "N/A"
     },
     {
-    "date": "28 Oct 2023",
-    "title": "Haunted Thai Puppet",
-    "category": "free stuff",
-    "area": "atlanta"
+        "date": "28 Oct 2023",
+        "title": "Haunted Thai Puppet",
+        "category": "arts+crafts",
+        "area": "atlanta",
+        "description": "Traditional Thai puppet, rumored to be haunted. Collector's item.",
+        "price": "$150"
     },
     {
         "date": "28 Sep 2023",
         "title": "Free Giant Oatly Carton @ Globe Life Field. Yes … Really.",
-        "category": "free stuff",
-        "area": "dallas"
+        "category": "free",
+        "area": "dallas",
+        "description": "Free giant Oatly carton, come get it this weekend at the Globe Life Field during the game!",
+        "price": "Free"
+    },
+    {
+        "date": "20 Oct 2023",
+        "title": "Vintage Collectible Coins",
+        "category": "collectibles",
+        "area": "san francisco",
+        "description": "A wide variety of vintage coins from the early 1900s, perfect for collectors.",
+        "price": "$500"
+    },
+    {
+        "date": "15 Oct 2023",
+        "title": "Learn Guitar with a Pro",
+        "category": "lessons",
+        "area": "nashville",
+        "description": "Private guitar lessons from an experienced musician, any style from classical to rock.",
+        "price": "$30 per hour"
+    },
+    {
+        "date": "12 Oct 2023",
+        "title": "Luxury Yacht Cruise Experience",
+        "category": "event",
+        "area": "miami",
+        "description": "Experience an unforgettable day cruising on a luxury yacht. Catering included.",
+        "price": "$200 per person"
+    },
+    {
+        "date": "08 Oct 2023",
+        "title": "Organic Vegetable Garden Setup",
+        "category": "farm+garden",
+        "area": "seattle",
+        "description": "We offer full-service organic vegetable garden setup and maintenance.",
+        "price": "$1500"
+    },
+    {
+        "date": "05 Oct 2023",
+        "title": "Professional Wedding Photography",
+        "category": "creative",
+        "area": "new york",
+        "description": "Capture your special day with stunning photography by a professional with 10 years of experience.",
+        "price": "$3000"
+    },
+    {
+        "date": "01 Oct 2023",
+        "title": "Web Development Full Course",
+        "category": "computer",
+        "area": "boston",
+        "description": "Complete web development course covering HTML, CSS, JS, and modern frameworks like React.",
+        "price": "$800"
+    },
+    {
+        "date": "28 Sep 2023",
+        "title": "Huge Garage Sale This Weekend!",
+        "category": "garage sale",
+        "area": "phoenix",
+        "description": "Huge garage sale featuring furniture, electronics, books and more. Great deals!",
+        "price": "Varies"
     }
-
 ]
-
-  
