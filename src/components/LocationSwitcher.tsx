@@ -21,16 +21,10 @@ const Select = styled.select`
   border-radius: 4px;
 `;
 
-interface Location {
-  id: string;
-  name: string;
-  children?: Location[];
-}
-
 const LocationSwitcher = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
-  const locations: Location[] = locationsData;
+  const locations = locationsData as Location[];
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
