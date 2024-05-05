@@ -1,0 +1,17 @@
+[
+    {
+    "id": "usa",
+    "name": "USA",
+    "children": [
+        { "id": "nyc", "name": "New York" },
+        { "id": "la", "name": "Los Angeles" }
+    ]
+    },
+    {
+    "id": "canada",
+    "name": "Canada",
+    "children": [
+        { "id": "toronto", "name": "Toronto" }
+    ]
+    }
+]

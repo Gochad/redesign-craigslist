@@ -8,22 +8,28 @@ const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-bottom: 50px;
+  padding-bottom: 50px;  // Zapewnia, że Footer nie zasłoni zawartości
 `;
 
 const Content = styled.div`
-  margin-top: 80px;
   display: flex;
+  flex-grow: 1;  // Pozwala na zajęcie dostępnej przestrzeni przez zawartość
+  padding-top: 80px;  // Zastępuje margin-top, zapewniając lepszą kontrolę nad przestrzenią
+`;
+
+const LeftListContainer = styled.div`
+  width: 200px;  // Można dostosować szerokość paska bocznego
+  padding: 20px;  // Odstępy wewnątrz LeftList
 `;
 
 const MainContent = styled.div`
-  flex-grow: 1;
+  flex-grow: 1;  // Zapewnia, że treść główna rośnie, aby wypełnić dostępną przestrzeń
   padding: 20px;
 `;
 
 interface PageLayoutProps {
-    children: React.ReactNode;
-  }
+  children: React.ReactNode;
+}
 
 const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
   return (
@@ -31,7 +37,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
       <Header />
       <LeftList />
       <Content>
-        <MainContent>{children}</MainContent>
+        {children}
       </Content>
       <Footer />
     </LayoutContainer>
