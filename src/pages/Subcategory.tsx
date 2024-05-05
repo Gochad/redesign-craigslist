@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PageLayout from './PageLayout';
 import itemsData from '../data/postings.json';
@@ -8,6 +8,7 @@ const SubcategoryContainer = styled.div`
   flex-direction: column;
   background: #f7f7f7;
   padding: 20px;
+  padding-top: 70px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.10);
 `;
@@ -21,7 +22,7 @@ const ItemsGrid = styled.div`
 
 const ListItem = styled.div`
   display: flex;
-  align-items: flex-start; // Wyrównanie elementów w pionie na początku kontenera
+  align-items: flex-start;
   flex: 0 1 48%;
   padding: 15px;
   border: 1px solid #ccc;
@@ -37,14 +38,14 @@ const ListItem = styled.div`
 `;
 
 const Content = styled.div`
-  flex-grow: 1; // Pozwala zawartości rozciągać się, aby wypełnić dostępne miejsce
-  margin-left: 10px; // Dodaje odstęp między przyciskiem a treścią
+  flex-grow: 1;
+  margin-left: 10px;
 `;
 
 const Title = styled.h3`
   font-size: 20px;
   color: #34495e;
-  margin: 0; // Usuwa marginesy, jeśli są niepotrzebne
+  margin: 0;
 `;
 
 const Detail = styled.p`
@@ -65,23 +66,29 @@ const FavoriteButton = styled.button<FavoriteButtonProps>`
     font-size: 24px;
 `;
 
-interface Item {
-    date: string;
-    title: string;
-    category: string;
-    area: string;
-    price: string;
-    description: string;
-}
-
 const Subcategory = () => {
-    const items: Item[] = itemsData;
-    const [favorites, setFavorites] = useState<string[]>([]);
+    const [items, setItems] = useState(() => {
+        const localData = localStorage.getItem('posts');
+        const localItems = localData ? JSON.parse(localData) : [];
+        return [...itemsData, ...localItems];
+    });
+
+    const [favorites, setFavorites] = useState(() => {
+        const localFavorites = localStorage.getItem('favorites');
+        return localFavorites ? JSON.parse(localFavorites) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem('posts', JSON.stringify(items));
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }, [items, favorites]);
 
     const toggleFavorite = (id: string) => {
-        setFavorites(favs => 
-            favs.includes(id) ? favs.filter(fav => fav !== id) : [...favs, id]
-        );
+        setFavorites((favs: string[]) => {
+            const newFavorites = favs.includes(id) ? favs.filter(fav => fav !== id) : [...favs, id];
+            localStorage.setItem('favorites', JSON.stringify(newFavorites));
+            return newFavorites;
+        });
     };
 
     return (

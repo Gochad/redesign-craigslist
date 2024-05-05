@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import CategoryCard from './CategoryCard';
 import categoriesData from '../data/categories.json';
 
-
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);

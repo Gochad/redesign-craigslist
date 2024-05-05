@@ -13,5 +13,13 @@ interface Location {
 interface LinkData {
     to: string;
     label: string;
-  }
+}
   
+interface Item {
+    date: string;
+    title: string;
+    category: string;
+    area: string;
+    price: string;
+    description: string;
+}

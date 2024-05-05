@@ -13,6 +13,7 @@ import BestOfCraigslistPage from './pages/HeaderLinks/BestOfCraigslist';
 import CareersPage from './pages/HeaderLinks/Careers';
 import WhatsNewPage from './pages/HeaderLinks/WhatsNew';
 import SystemStatusPage from './pages/HeaderLinks/SystemStatus';
+import CreatePost from './pages/CreatePost';
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
           <GlobalStyles />
             <Routes>
                 <Route path="" element={<HomePage />} />
-                <Route path="/subcategories/" element={<Subcategory/>}></Route>
+                <Route path="/subcategories" element={<Subcategory/>}></Route>
+                <Route path="/create" element={<CreatePost/>}></Route>
 
                 <Route path="/contact" element={<ContactPage/>} />
                 <Route path="/help-faq-abuse-legal" element={<HelpFaqAbuseLegalPage/>} />
