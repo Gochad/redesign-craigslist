@@ -1,3 +1,6 @@
+declare module 'lodash' {
+    export function debounce(func: Function, wait: number, options?: { leading?: boolean; maxWait?: number; trailing?: boolean }): Function;
+}
 
 interface CategoryData {
     name: string;

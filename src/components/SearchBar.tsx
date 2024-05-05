@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
+import { debounce } from 'lodash';
 
 const SearchInput = styled.input`
   padding: 12px 20px;
@@ -30,8 +31,14 @@ interface SearchBarProps {
 const SearchBar = ({ placeholder, onSearch }: SearchBarProps) => {
   const [searchTerm, setSearchTerm] = useState('');
 
+  const debouncedSearch = useCallback(
+    debounce((nextValue: string) => onSearch(nextValue), 300),
+    [onSearch]
+  );
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
+    debouncedSearch(event.target.value);
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {

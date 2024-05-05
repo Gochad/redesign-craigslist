@@ -34,7 +34,19 @@ const LocationSwitcher = () => {
     setSelectedLocation(event.target.value);
   };
 
-  const renderOptions = (location: Location, prefix: string) => {
+  const filterLocations = (locations: Location[], searchTerm: string): Location[] => {
+    return locations.reduce((acc: Location[], location) => {
+      const match = location.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const children = location.children ? filterLocations(location.children, searchTerm) : [];
+
+      if (match || children.length) {
+        acc.push({ ...location, children });
+      }
+      return acc;
+    }, []);
+  };
+
+  const renderOptions = (location: Location, prefix: string = '') => {
     const options = [
       <option key={location.id} value={location.id}>
         {prefix + location.name}
@@ -50,21 +62,19 @@ const LocationSwitcher = () => {
     return options;
   };
 
-  const filteredLocations = locations.filter(location =>
-    location.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredLocations = filterLocations(locations, searchTerm);
 
   return (
     <Container>
       <Input
         type="text"
-        placeholder="search location..."
+        placeholder="Search location..."
         value={searchTerm}
         onChange={handleSearchChange}
       />
       <Select value={selectedLocation} onChange={handleChange}>
         <option value="">Choose location</option>
-        {filteredLocations.map(location => renderOptions(location, ''))}
+        {filteredLocations.map(location => renderOptions(location))}
       </Select>
     </Container>
   );
