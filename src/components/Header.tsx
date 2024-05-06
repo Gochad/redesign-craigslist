@@ -6,7 +6,7 @@ import LocationSwitcher from './LocationSwitcher';
 const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: #f8f9fa;
   padding: 10px 20px;
   text-align: left;
@@ -19,7 +19,10 @@ const Title = styled.h1`
   margin: 0;
   color: black;
   text-decoration: none; 
-  margin-right: 10px;
+  margin-right: 30px;
+  margin-left: 80px;
+  display: flex;
+  align-items: center;
 `;
 
 const HeaderButton = styled.button`
@@ -37,16 +40,34 @@ const HeaderButton = styled.button`
   }
 `;
 
+const Logo = styled.img`
+  height: 40px;
+  margin-right: 10px;
+`;
+
+const ClickableElems = styled.div`
+  margin-left: auto;
+  margin-right: 40%;
+  display: flex;
+  align-items: center;
+
+`;
+
 const Header = () => {
   return (
     <HeaderContainer>
       <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <Title>Craigslist Redesign</Title>
+        <Title>
+          <Logo src="/logo.png" alt="Craigslist Logo" />
+          Craigslist Redesign
+          </Title>
       </Link>
-      <Link to="/create" style={{ textDecoration: 'none' }}>
-        <HeaderButton>create post</HeaderButton>
-      </Link>
-      <LocationSwitcher />
+      <ClickableElems>
+        <Link to="/create" style={{ textDecoration: 'none' }}>
+          <HeaderButton>create post</HeaderButton>
+        </Link>
+        <LocationSwitcher />
+      </ClickableElems>
     </HeaderContainer>
   );
 };
