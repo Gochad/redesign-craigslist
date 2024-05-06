@@ -14,6 +14,7 @@ import CareersPage from './pages/HeaderLinks/Careers';
 import WhatsNewPage from './pages/HeaderLinks/WhatsNew';
 import SystemStatusPage from './pages/HeaderLinks/SystemStatus';
 import CreatePost from './pages/CreatePost';
+import FooterPage from './pages/FooterPage';
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
                 <Route path="" element={<HomePage />} />
                 <Route path="/subcategories" element={<Subcategory/>}></Route>
                 <Route path="/create" element={<CreatePost/>}></Route>
+
+                <Route path="/:pageName" element={<FooterPage />} />
 
                 <Route path="/contact" element={<ContactPage/>} />
                 <Route path="/help-faq-abuse-legal" element={<HelpFaqAbuseLegalPage/>} />
