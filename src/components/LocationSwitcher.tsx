@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import locationsData from '../data/location.json';
+import { Location } from './types'
 
 const Container = styled.div`
   display: flex;

@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CategoryData } from './types'
+
 
 const Card = styled.div`
   padding: 20px;
