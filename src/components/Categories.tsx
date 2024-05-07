@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import CategoryCard from './CategoryCard';
 import categoriesData from '../data/categories.json';
+
 import { CategoryData } from '../components/types';
 
 const Container = styled.div`

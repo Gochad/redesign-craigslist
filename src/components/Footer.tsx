@@ -8,7 +8,7 @@ const Container = styled.footer`
   color: white;
   text-align: center;
   padding: 20px;
-  position: fixed;
+  position: static;
   bottom: 0;
   left: 0;
   width: 100%;

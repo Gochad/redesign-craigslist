@@ -15,6 +15,7 @@ import WhatsNewPage from './pages/HeaderLinks/WhatsNew';
 import SystemStatusPage from './pages/HeaderLinks/SystemStatus';
 import CreatePost from './pages/CreatePost';
 import FooterPage from './pages/FooterPage';
+import UserPage from './pages/UserPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                 <Route path="" element={<HomePage />} />
                 <Route path="/subcategories" element={<Subcategory/>}></Route>
                 <Route path="/create" element={<CreatePost/>}></Route>
+                <Route path="/user" element={<UserPage/>} />
 
                 <Route path="/:pageName" element={<FooterPage />} />
 

@@ -28,11 +28,11 @@ const SubcategoryItem = styled.li`
 `;
 
 const StyledLink = styled.a`
-  color: #000; // Ustaw kolor linku
-  text-decoration: none; // Usuń podkreślenie
+  color: #000;
+  text-decoration: none;
 
   &:hover {
-    text-decoration: underline; // Dodaj podkreślenie przy najechaniu
+    text-decoration: underline;
   }
 `;
 
