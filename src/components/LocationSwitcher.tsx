@@ -1,6 +1,7 @@
-import React, { useState, ChangeEvent } from 'react';
-import styled from 'styled-components';
-import locationsData from '../data/location.json';
+import React, { useState, ChangeEvent } from "react";
+import styled from "styled-components";
+import locationsData from "../data/location.json";
+import { Location } from "./types";
 
 const Container = styled.div`
   display: flex;
@@ -22,8 +23,8 @@ const Select = styled.select`
 `;
 
 const LocationSwitcher = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
   const locations: Location[] = locationsData as Location[];
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -34,10 +35,17 @@ const LocationSwitcher = () => {
     setSelectedLocation(event.target.value);
   };
 
-  const filterLocations = (locations: Location[], searchTerm: string): Location[] => {
+  const filterLocations = (
+    locations: Location[],
+    searchTerm: string
+  ): Location[] => {
     return locations.reduce((acc: Location[], location) => {
-      const match = location.name.toLowerCase().includes(searchTerm.toLowerCase());
-      const children = location.children ? filterLocations(location.children, searchTerm) : [];
+      const match = location.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+      const children = location.children
+        ? filterLocations(location.children, searchTerm)
+        : [];
 
       if (match || children.length) {
         acc.push({ ...location, children });
@@ -46,16 +54,16 @@ const LocationSwitcher = () => {
     }, []);
   };
 
-  const renderOptions = (location: Location, prefix: string = '') => {
+  const renderOptions = (location: Location, prefix: string = "") => {
     const options = [
       <option key={location.id} value={location.id}>
         {prefix + location.name}
-      </option>
+      </option>,
     ];
 
     if (location.children) {
-      location.children.forEach(child => {
-        options.push(...renderOptions(child, prefix + '--'));
+      location.children.forEach((child) => {
+        options.push(...renderOptions(child, prefix + "--"));
       });
     }
 
@@ -74,7 +82,7 @@ const LocationSwitcher = () => {
       />
       <Select value={selectedLocation} onChange={handleChange}>
         <option value="">Choose location</option>
-        {filteredLocations.map(location => renderOptions(location))}
+        {filteredLocations.map((location) => renderOptions(location))}
       </Select>
     </Container>
   );

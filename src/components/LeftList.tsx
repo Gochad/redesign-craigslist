@@ -26,7 +26,7 @@ const menuStyles = {
     width: "350px",
   },
   bmMenu: {
-    background: "#282c34",
+    background: "#39004d",
     padding: "2em",
     fontSize: "1.15em",
     overflow: "hidden",

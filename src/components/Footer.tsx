@@ -1,14 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import footerData from '../data/footer.json';
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import footerData from "../data/footer.json";
 
 const Container = styled.footer`
-  background-color: #333;
+  background-color: #39004d;
   color: white;
   text-align: center;
   padding: 20px;
-  position: fixed;
+  position: static;
   bottom: 0;
   left: 0;
   width: 100%;
