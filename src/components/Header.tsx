@@ -58,7 +58,7 @@ const Header = () => {
     <HeaderContainer>
       <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
         <Title>
-          <Logo src="/logo.png" alt="Craigslist Logo" />
+          <Logo src="/logo.avif" alt="Craigslist Logo" />
           Craigslist Redesign
           </Title>
       </Link>
