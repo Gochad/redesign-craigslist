@@ -1,50 +1,50 @@
 [
     {
         "text": "© 2024 craigslist redesigned",
-        "link": "",
+        "link": "/copyright",
         "content": "Welcome to Craigslist Redesigned! Explore the new features and improvements. Check out our redesigned interface and experience a smoother, more user-friendly browsing environment.",
-        "image": "https://source.unsplash.com/random/800x600/?city"
+        "image": "/copyright.avif"
     },
     {
         "text": "help",
         "link": "/help",
         "content": "Here is some help information. Need assistance? Our comprehensive help center provides answers to all your questions. Learn how to navigate the site, post listings, and stay safe online.",
-        "image": "https://source.unsplash.com/random/800x600/?help"
+        "image": "/help.avif"
     },
     {
         "text": "safety",
         "link": "/safety",
         "content": "Important safety information. Ensuring the safety of our community is our top priority. Read our safety tips on personal safety online, scam awareness, and secure transactions.",
-        "image": "https://source.unsplash.com/random/800x600/?safety"
+        "image": "/safety.avif"
     },
     {
         "text": "privacy",
         "link": "/privacy",
         "content": "Learn about our privacy practices. Your privacy is critically important to us. Discover how we protect your personal information and respect your privacy in accordance with best practices and regulatory requirements.",
-        "image": "https://source.unsplash.com/random/800x600/?privacy"
+        "image": "/privacy.avif"
     },
     {
         "text": "terms",
         "link": "/terms",
         "content": "Review our terms and conditions. Familiarize yourself with the terms of service that govern the use of our platform. Understanding these terms is essential for all users.",
-        "image": "https://source.unsplash.com/random/800x600/?law"
+        "image": "/terms.avif"
     },
     {
         "text": "about",
         "link": "/about",
         "content": "Learn more about us. Craigslist Redesigned is committed to providing a reliable and friendly platform where you can buy, sell, and connect with others in your community.",
-        "image": "https://source.unsplash.com/random/800x600/?about"
+        "image": "/about.avif"
     },
     {
         "text": "app",
         "link": "/app",
         "content": "Information about our mobile app. Download our app and get the power of Craigslist Redesigned in the palm of your hand. Stay connected and responsive on the go with our mobile solutions.",
-        "image": "https://source.unsplash.com/random/800x600/?mobileapp"
+        "image": "/app.avif"
     },
     {
         "text": "sitemap",
         "link": "/sitemap",
         "content": "View our site map. Navigate through our extensive site structure easily using our sitemap. Find the links to all our pages and services in one place.",
-        "image": "https://source.unsplash.com/random/800x600/?sitemap"
+        "image": "/sitemap.avif"
     }
 ]
