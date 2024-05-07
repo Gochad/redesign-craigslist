@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { CategoryData } from "./types";
 
 const Card = styled.div`
   padding: 20px;
@@ -43,9 +44,11 @@ interface CategoryCardProps {
 const CategoryCard = ({ category, style }: CategoryCardProps) => {
   return (
     <Card style={style}>
-      <h3><StyledLink href={`/categories/`}>{category.name}</StyledLink></h3>
+      <h3>
+        <StyledLink href={`/categories/`}>{category.name}</StyledLink>
+      </h3>
       <SubcategoryList>
-        {category.subcategories.map(subcategory => (
+        {category.subcategories.map((subcategory) => (
           <SubcategoryItem key={subcategory}>
             <StyledLink href={`/subcategories/`}>{subcategory}</StyledLink>
           </SubcategoryItem>

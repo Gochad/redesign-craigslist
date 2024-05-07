@@ -1,7 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import CategoryCard from './CategoryCard';
-import categoriesData from '../data/categories.json';
+import React from "react";
+import styled from "styled-components";
+import CategoryCard from "./CategoryCard";
+import categoriesData from "../data/categories.json";
+import { CategoryData } from "./types";
 
 const Container = styled.div`
   display: grid;
@@ -19,16 +20,21 @@ interface CategoriesProps {
 
 const CategoriesList = ({ searchTerm, setSearchTerm }: CategoriesProps) => {
   const searchCategories = (categories: CategoryData[], term: string) => {
-    return categories.filter(category => {
-      const categoryMatches = category.name.toLowerCase().includes(term.toLowerCase());
-      const subcategoryMatches = category.subcategories.some(subcategory =>
+    return categories.filter((category) => {
+      const categoryMatches = category.name
+        .toLowerCase()
+        .includes(term.toLowerCase());
+      const subcategoryMatches = category.subcategories.some((subcategory) =>
         subcategory.toLowerCase().includes(term.toLowerCase())
       );
       return categoryMatches || subcategoryMatches;
     });
   };
 
-  const filteredCategories = searchCategories(categoriesData as CategoryData[], searchTerm);
+  const filteredCategories = searchCategories(
+    categoriesData as CategoryData[],
+    searchTerm
+  );
 
   const handleSearch = (searchTerm: string) => {
     setSearchTerm(searchTerm);
@@ -41,8 +47,9 @@ const CategoriesList = ({ searchTerm, setSearchTerm }: CategoriesProps) => {
           <CategoryCard
             key={category.name}
             style={{
-              gridColumn: index === 2 || index === 3 ? 3 + index - 2 : undefined,
-              gridRow: index === 2 || index === 3 ? '1 / 3' : undefined
+              gridColumn:
+                index === 2 || index === 3 ? 3 + index - 2 : undefined,
+              gridRow: index === 2 || index === 3 ? "1 / 3" : undefined,
             }}
             category={category}
           />

@@ -1,26 +1,24 @@
-interface CategoryData {
-    name: string;
-    subcategories: string[];
+export interface CategoryData {
+  name: string;
+  subcategories: string[];
 }
 
-interface Location {
-    id: string;
-    name: string;
-    children?: Location[];
+export interface Location {
+  id: string;
+  name: string;
+  children?: Location[];
 }
 
-interface LinkData {
-    to: string;
-    label: string;
-}
-  
-interface Item {
-    date: string;
-    title: string;
-    category: string;
-    area: string;
-    price: string;
-    description: string;
+export interface LinkData {
+  to: string;
+  label: string;
 }
 
-export {};
+export interface Item {
+  date: string;
+  title: string;
+  category: string;
+  area: string;
+  price: string;
+  description: string;
+}
