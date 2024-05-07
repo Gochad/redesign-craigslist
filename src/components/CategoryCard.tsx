@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CategoryData } from './types'
-
+import { CategoryData } from './types';
 
 const Card = styled.div`
   padding: 20px;
@@ -29,11 +28,11 @@ const SubcategoryItem = styled.li`
 `;
 
 const StyledLink = styled.a`
-  color: #000; // Ustaw kolor linku
-  text-decoration: none; // Usuń podkreślenie
+  color: #000;
+  text-decoration: none;
 
   &:hover {
-    text-decoration: underline; // Dodaj podkreślenie przy najechaniu
+    text-decoration: underline;
   }
 `;
 

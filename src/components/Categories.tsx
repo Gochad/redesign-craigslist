@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import CategoryCard from './CategoryCard';
 import categoriesData from '../data/categories.json';
-import { CategoryData } from './types';
+
+import { CategoryData } from '../components/types';
 
 const Container = styled.div`
   display: grid;
@@ -22,7 +23,7 @@ const CategoriesList = ({ searchTerm, setSearchTerm }: CategoriesProps) => {
   const searchCategories = (categories: CategoryData[], term: string) => {
     return categories.filter(category => {
       const categoryMatches = category.name.toLowerCase().includes(term.toLowerCase());
-      const subcategoryMatches = category.subcategories.some(subcategory =>
+      const subcategoryMatches = category.subcategories.some((subcategory: string)=>
         subcategory.toLowerCase().includes(term.toLowerCase())
       );
       return categoryMatches || subcategoryMatches;
@@ -30,10 +31,6 @@ const CategoriesList = ({ searchTerm, setSearchTerm }: CategoriesProps) => {
   };
 
   const filteredCategories = searchCategories(categoriesData as CategoryData[], searchTerm);
-
-  const handleSearch = (searchTerm: string) => {
-    setSearchTerm(searchTerm);
-  };
 
   return (
     <div>

@@ -17,12 +17,17 @@ const Container = styled.footer`
 `;
 
 const Elem = styled.div`
+  display: flex;
+  align-items: center;
   margin-right: 50px;
 `;
 
 const StyledLink = styled(Link)`
   color: white;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+
   &:hover {
     text-decoration: underline;
   }
@@ -33,7 +38,9 @@ const Footer = () => {
     <Container>
       {footerData.map((item, index) => (
         <Elem key={index}>
-          <StyledLink to={item.link}>{item.text}</StyledLink>
+          <StyledLink to={item.link}>
+            {item.text}
+          </StyledLink>
         </Elem>
       ))}
     </Container>
@@ -41,3 +48,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
