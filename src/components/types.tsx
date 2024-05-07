@@ -26,6 +26,7 @@ export interface Item {
 export interface Reply {
     id: number;
     author: string;
+    title: string;
     content: string;
     replies: Reply[];
 }

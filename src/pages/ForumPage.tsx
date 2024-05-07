@@ -53,55 +53,94 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const handleReply = (id: number) => {
-    console.log('Reply to', id);
-}
-  const handleEdit = (id: number) => {
-    console.log('Edit', id);
-  };
-
-const renderReplies = (replies: Reply[]) => {
-  return replies.map(reply => (
-    <ReplyElem key={reply.id}>
-      <PostContent>
-        <p><strong>{reply.author}:</strong> {reply.content}</p>
-        {reply.replies && reply.replies.length > 0 && renderReplies(reply.replies)}
-      </PostContent>
-      <ButtonContainer>
-        <Button onClick={() => handleEdit(reply.id)}>Edit</Button>
-        <Button onClick={() => handleReply(reply.id)}>Reply</Button>
-      </ButtonContainer>
-    </ReplyElem>
-  ));
-};
-
 const ForumPage = () => {
-    const [posts, setPosts] = useState(() => {
+    const [posts, setPosts] = useState<Reply[]>(() => {
         const localData = localStorage.getItem('forumPosts');
         return localData ? JSON.parse(localData) : forumPosts;
     });
+    const [editId, setEditId] = useState(null);
+    const [editText, setEditText] = useState('');
 
     useEffect(() => {
         localStorage.setItem('forumPosts', JSON.stringify(posts));
     }, [posts]);
-    
-    return (
-        <PageLayout>
-        <Section>
-            {forumPosts.map(post => (
-            <PostContainer key={post.id}>
+
+    const handleReply = (postId: number, replyContent: string) => {
+        const newPosts = posts.map(post => {
+            if (post.id === postId) {
+                const newReply = {
+                    id: Math.max(...post.replies.map(r => r.id)) + 1,
+                    author: "Current User",
+                    content: replyContent,
+                    replies: []
+                };
+                return { ...post, replies: [...post.replies, newReply] };
+            }
+            return post;
+        });
+        setPosts(newPosts);
+    };
+
+    const startEdit = (replyId: number, currentText: string) => {
+        setEditId(replyId);
+        setEditText(currentText);
+    };
+
+    const handleEdit = (replyId: number) => {
+        const newPosts = posts.map(post => {
+            const newReplies = post.replies.map(reply => {
+                if (reply.id === replyId) {
+                    return { ...reply, content: editText };
+                }
+                return reply;
+            });
+            return { ...post, replies: newReplies };
+        });
+        setPosts(newPosts);
+        setEditId(null);
+    };
+
+    const renderReplies = (replies: Reply[], postId: number) => {
+        return replies.map(reply => (
+            <ReplyElem key={reply.id}>
                 <PostContent>
-                <Title>{post.title}</Title>
-                <Content>{post.content}</Content>
-                {post.replies && post.replies.length > 0 && renderReplies(post.replies)}
+                    {editId === reply.id ? (
+                        <input value={editText} onChange={e => setEditText(e.target.value)} />
+                    ) : (
+                        <p><strong>{reply.author}:</strong> {reply.content}</p>
+                    )}
+                    {reply.replies && reply.replies.length > 0 && renderReplies(reply.replies, reply.id)}
                 </PostContent>
                 <ButtonContainer>
-                <Button onClick={() => handleEdit(post.id)}>Edit</Button>
-                <Button onClick={() => handleReply(post.id)}>Reply</Button>
+                    {editId === reply.id ? (
+                        <Button onClick={() => handleEdit(reply.id)}>Save</Button>
+                    ) : (
+                        <>
+                            <Button onClick={() => startEdit(reply.id, reply.content)}>Edit</Button>
+                            <Button onClick={() => handleReply(reply.id, "Reply text here")}>Reply</Button>
+                        </>
+                    )}
                 </ButtonContainer>
-            </PostContainer>
-            ))}
-        </Section>
+            </ReplyElem>
+        ));
+    };
+
+    return (
+        <PageLayout>
+            <Section>
+                {posts.map(post => (
+                    <PostContainer key={post.id}>
+                        <PostContent>
+                            <Title>{post.title}</Title>
+                            <Content>{post.content}</Content>
+                            {post.replies && post.replies.length > 0 && renderReplies(post.replies, post.id)}
+                        </PostContent>
+                        <ButtonContainer>
+                            <Button onClick={() => handleReply(post.id, "Reply text here")}>Reply</Button>
+                        </ButtonContainer>
+                    </PostContainer>
+                ))}
+            </Section>
         </PageLayout>
     );
 };
