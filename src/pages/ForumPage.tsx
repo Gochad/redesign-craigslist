@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PageLayout from './PageLayout';
 import styled from 'styled-components';
 import forumPosts from '../data/forum-posts.json';
@@ -36,6 +36,7 @@ const ReplyElem = styled.div`
   margin-left: 20px;
   padding: 10px;
   border-left: 3px solid #ccc;
+  align-items: baseline;
 `;
 
 const ButtonContainer = styled.div`
@@ -75,25 +76,34 @@ const renderReplies = (replies: Reply[]) => {
 };
 
 const ForumPage = () => {
-  return (
-    <PageLayout>
-      <Section>
-        {forumPosts.map(post => (
-          <PostContainer key={post.id}>
-            <PostContent>
-              <Title>{post.title}</Title>
-              <Content>{post.content}</Content>
-              {post.replies && post.replies.length > 0 && renderReplies(post.replies)}
-            </PostContent>
-            <ButtonContainer>
-              <Button onClick={() => handleEdit(post.id)}>Edit</Button>
-              <Button onClick={() => handleReply(post.id)}>Reply</Button>
-            </ButtonContainer>
-          </PostContainer>
-        ))}
-      </Section>
-    </PageLayout>
-  );
+    const [posts, setPosts] = useState(() => {
+        const localData = localStorage.getItem('forumPosts');
+        return localData ? JSON.parse(localData) : forumPosts;
+    });
+
+    useEffect(() => {
+        localStorage.setItem('forumPosts', JSON.stringify(posts));
+    }, [posts]);
+    
+    return (
+        <PageLayout>
+        <Section>
+            {forumPosts.map(post => (
+            <PostContainer key={post.id}>
+                <PostContent>
+                <Title>{post.title}</Title>
+                <Content>{post.content}</Content>
+                {post.replies && post.replies.length > 0 && renderReplies(post.replies)}
+                </PostContent>
+                <ButtonContainer>
+                <Button onClick={() => handleEdit(post.id)}>Edit</Button>
+                <Button onClick={() => handleReply(post.id)}>Reply</Button>
+                </ButtonContainer>
+            </PostContainer>
+            ))}
+        </Section>
+        </PageLayout>
+    );
 };
 
 export default ForumPage;

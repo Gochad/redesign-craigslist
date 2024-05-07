@@ -21,6 +21,7 @@ const Title = styled.h1`
   margin: 0;
   color: black;
   text-decoration: none;
+  padding-right: 50px;
   margin-right: 30px;
   margin-left: 80px;
   display: flex;
@@ -33,8 +34,6 @@ const Logo = styled.img`
 `;
 
 const ClickableElems = styled.div`
-  margin-left: auto;
-  margin-right: 40%;
   display: flex;
   align-items: center;
 `;
