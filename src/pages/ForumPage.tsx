@@ -53,12 +53,26 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Input = styled.textarea`
+  flex: 1;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  width: 500px;
+  height: 70px;
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+`;
+
 const ForumPage = () => {
     const [posts, setPosts] = useState<Reply[]>(() => {
         const localData = localStorage.getItem('forumPosts');
         return localData ? JSON.parse(localData) : forumPosts;
     });
-    const [editId, setEditId] = useState(null);
+    const [editId, setEditId] = useState<number>(0);
     const [editText, setEditText] = useState('');
 
     useEffect(() => {
@@ -70,6 +84,7 @@ const ForumPage = () => {
             if (post.id === postId) {
                 const newReply = {
                     id: Math.max(...post.replies.map(r => r.id)) + 1,
+                    title: post.title,
                     author: "Current User",
                     content: replyContent,
                     replies: []
@@ -97,7 +112,7 @@ const ForumPage = () => {
             return { ...post, replies: newReplies };
         });
         setPosts(newPosts);
-        setEditId(null);
+        setEditId(0);
     };
 
     const renderReplies = (replies: Reply[], postId: number) => {
@@ -105,7 +120,11 @@ const ForumPage = () => {
             <ReplyElem key={reply.id}>
                 <PostContent>
                     {editId === reply.id ? (
-                        <input value={editText} onChange={e => setEditText(e.target.value)} />
+                        <Input
+                            value={editText}
+                            onChange={e => setEditText(e.target.value)}
+                            autoFocus
+                        />
                     ) : (
                         <p><strong>{reply.author}:</strong> {reply.content}</p>
                     )}
