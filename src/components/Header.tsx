@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import LocationSwitcher from './LocationSwitcher';
 
 const HeaderContainer = styled.div`
@@ -18,26 +20,11 @@ const HeaderContainer = styled.div`
 const Title = styled.h1`
   margin: 0;
   color: black;
-  text-decoration: none; 
+  text-decoration: none;
   margin-right: 30px;
   margin-left: 80px;
   display: flex;
   align-items: center;
-`;
-
-const HeaderButton = styled.button`
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-
-  &:hover {
-    background-color: #0056b3;
-  }
 `;
 
 const Logo = styled.img`
@@ -50,7 +37,23 @@ const ClickableElems = styled.div`
   margin-right: 40%;
   display: flex;
   align-items: center;
+`;
 
+const StyledLinkButton = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-left: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none; // Remove underline from links
+
+  &:hover {
+    background-color: #0056b3;
+  }
 `;
 
 const Header = () => {
@@ -60,11 +63,17 @@ const Header = () => {
         <Title>
           <Logo src="/logo.avif" alt="Craigslist Logo" />
           Craigslist Redesign
-          </Title>
+        </Title>
       </Link>
       <ClickableElems>
         <Link to="/create" style={{ textDecoration: 'none' }}>
-          <HeaderButton>create post</HeaderButton>
+          <StyledLinkButton>create post</StyledLinkButton>
+        </Link>
+        <Link to="/user" style={{ textDecoration: 'none' }}>
+          <StyledLinkButton>
+            <FontAwesomeIcon icon={faUser} size="lg" style={{ marginRight: '5px' }} />
+            user
+          </StyledLinkButton>
         </Link>
         <LocationSwitcher />
       </ClickableElems>
