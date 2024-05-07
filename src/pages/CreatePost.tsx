@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PageLayout from './PageLayout';
+import { Item } from '../components/types';
 
 const FormContainer = styled.div`
   display: flex;

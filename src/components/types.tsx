@@ -1,20 +1,20 @@
-interface CategoryData {
+export interface CategoryData {
     name: string;
     subcategories: string[];
 }
 
-interface Location {
+export interface Location {
     id: string;
     name: string;
     children?: Location[];
 }
 
-interface LinkData {
+export interface LinkData {
     to: string;
     label: string;
 }
   
-interface Item {
+export interface Item {
     date: string;
     title: string;
     category: string;
@@ -22,5 +22,3 @@ interface Item {
     price: string;
     description: string;
 }
-
-export {};
