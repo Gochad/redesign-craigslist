@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import CategoryCard from "./CategoryCard";
 import categoriesData from "../data/categories.json";
-import { CategoryData } from "./types";
+import { useSearch } from "../context/SearchContext";
+
+import { CategoryData } from "../components/types";
 
 const Container = styled.div`
   display: grid;
@@ -14,12 +16,13 @@ const Container = styled.div`
   // background-color: red;
 `;
 
-interface CategoriesProps {
-  searchTerm: string;
-  setSearchTerm: (value: string) => void;
-}
+const FullPageCenterWrapper = styled.div`
+  min-width: 100vw;
+`;
 
-const CategoriesList = ({ searchTerm, setSearchTerm }: CategoriesProps) => {
+const CategoriesList = () => {
+  const { searchTerm } = useSearch();
+
   const searchCategories = (categories: CategoryData[], term: string) => {
     return categories.filter((category) => {
       const categoryMatches = category.name
@@ -37,12 +40,8 @@ const CategoriesList = ({ searchTerm, setSearchTerm }: CategoriesProps) => {
     searchTerm
   );
 
-  const handleSearch = (searchTerm: string) => {
-    setSearchTerm(searchTerm);
-  };
-
   return (
-    <div>
+    <FullPageCenterWrapper>
       <Container>
         {filteredCategories.map((category, index) => (
           <CategoryCard
@@ -57,7 +56,7 @@ const CategoriesList = ({ searchTerm, setSearchTerm }: CategoriesProps) => {
           />
         ))}
       </Container>
-    </div>
+    </FullPageCenterWrapper>
   );
 };
 

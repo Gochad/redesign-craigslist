@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faCoffee } from "@fortawesome/free-solid-svg-icons";
 import LocationSwitcher from "./LocationSwitcher";
+import SearchBar from "../components/SearchBar";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -21,6 +22,7 @@ const Title = styled.h1`
   margin: 0;
   color: black;
   text-decoration: none;
+  padding-right: 50px;
   margin-right: 30px;
   margin-left: 80px;
   display: flex;
@@ -33,8 +35,6 @@ const Logo = styled.img`
 `;
 
 const ClickableElems = styled.div`
-  margin-left: auto;
-  margin-right: 40%;
   display: flex;
   align-items: center;
 `;
@@ -49,7 +49,7 @@ const StyledLinkButton = styled.div`
   margin-left: 20px;
   cursor: pointer;
   font-size: 14px;
-  text-decoration: none; // Remove underline from links
+  text-decoration: none;
 
   &:hover {
     background-color: #5c3b69; //#0056b3;
@@ -80,6 +80,17 @@ const Header = () => {
           </StyledLinkButton>
         </Link>
         <LocationSwitcher />
+        <SearchBar />
+        <Link to="/forum" style={{ textDecoration: "none" }}>
+          <StyledLinkButton>
+            <FontAwesomeIcon
+              icon={faCoffee}
+              size="lg"
+              style={{ marginRight: "5px" }}
+            />
+            forum
+          </StyledLinkButton>
+        </Link>
       </ClickableElems>
     </HeaderContainer>
   );

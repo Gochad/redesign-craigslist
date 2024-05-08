@@ -22,3 +22,17 @@ export interface Item {
   price: string;
   description: string;
 }
+
+export interface User {
+    name: string;
+    email: string;
+    location: string;
+}
+  
+export interface Reply {
+    id: number;
+    author: string;
+    title: string;
+    content: string;
+    replies: Reply[];
+}
