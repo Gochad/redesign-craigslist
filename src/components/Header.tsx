@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faCoffee } from '@fortawesome/free-solid-svg-icons';
 import LocationSwitcher from './LocationSwitcher';
 
 const HeaderContainer = styled.div`
@@ -75,6 +75,12 @@ const Header = () => {
           </StyledLinkButton>
         </Link>
         <LocationSwitcher />
+        <Link to="/forum" style={{ textDecoration: 'none' }}>
+          <StyledLinkButton>
+            <FontAwesomeIcon icon={faCoffee} size="lg" style={{ marginRight: '5px' }} />
+            forum
+          </StyledLinkButton>
+        </Link>
       </ClickableElems>
     </HeaderContainer>
   );

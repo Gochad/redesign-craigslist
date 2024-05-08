@@ -1,6 +1,5 @@
 [
     { "to": "/", "label": "homepage" },
-    { "to": "/forum", "label": "forum"},
     { "to": "/contact", "label": "contact" },
     { "to": "/help-faq-abuse-legal", "label": "help, faq, abuse, legal" },
     { "to": "/avoid-scams", "label": "avoid scams & fraud" },
