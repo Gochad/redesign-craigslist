@@ -26,7 +26,7 @@ const PostContainer = styled.div`
 
 const ReplyElem = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background: #f9f9f9;
   margin-top: 10px;
   padding: 15px;
@@ -57,6 +57,7 @@ const Button = styled.button`
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  height: 35px;
 
   &:hover {
     background-color: #0056b3;
