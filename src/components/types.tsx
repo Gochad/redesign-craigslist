@@ -23,6 +23,12 @@ export interface Item {
     description: string;
 }
 
+export interface User {
+    name: string;
+    email: string;
+    location: string;
+}
+  
 export interface Reply {
     id: number;
     author: string;

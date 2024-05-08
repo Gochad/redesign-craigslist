@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCoffee } from '@fortawesome/free-solid-svg-icons';
 import LocationSwitcher from './LocationSwitcher';
+import SearchBar from '../components/SearchBar';
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -48,7 +49,7 @@ const StyledLinkButton = styled.div`
   margin-left: 20px;
   cursor: pointer;
   font-size: 14px;
-  text-decoration: none; // Remove underline from links
+  text-decoration: none;
 
   &:hover {
     background-color: #0056b3;
@@ -75,6 +76,7 @@ const Header = () => {
           </StyledLinkButton>
         </Link>
         <LocationSwitcher />
+        <SearchBar />
         <Link to="/forum" style={{ textDecoration: 'none' }}>
           <StyledLinkButton>
             <FontAwesomeIcon icon={faCoffee} size="lg" style={{ marginRight: '5px' }} />

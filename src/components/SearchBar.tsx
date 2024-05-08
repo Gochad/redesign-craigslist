@@ -1,20 +1,30 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { debounce } from 'lodash';
+import { faSearch } from '@fortawesome/free-solid-svg-icons'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSearch } from '../context/SearchContext';
 
-const SearchInput = styled.input`
-  padding: 12px 20px;
-  margin: 20px 40px;
-  display: block;
-  height: 40px;
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 250px;
+  margin: 20px;
+`;
+
+const SearchInput = styled.input<{ isOpen?: boolean; }>`
+  position: absolute;
+  right: 0;
+  width: ${props => props.isOpen ? 'calc(100% - 80px)' : '0'};
+  height: 15px;
+  padding: ${props => props.isOpen ? '12px 20px' : '12px 0px'};
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    border-color: #bbb;
-  }
+  transition: width 0.3s ease, padding 0.3s ease;
+  opacity: ${props => props.isOpen ? '1' : '0'};
+  visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
+  overflow: hidden;
 
   &:focus {
     outline: none;
@@ -23,38 +33,46 @@ const SearchInput = styled.input`
   }
 `;
 
-interface SearchBarProps {
-  placeholder: string;
-  onSearch: (searchTerm: string) => void;
-}
+const SearchIcon = styled.div`
+  color: #007BFF;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+`;
 
-const SearchBar = ({ placeholder, onSearch }: SearchBarProps) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const SearchBar = () => {
+  const { searchTerm, setSearchTerm } = useSearch(); // use search contex
+  const [isOpen, setIsOpen] = useState(false);
 
   const debouncedSearch = useCallback(
-    debounce((nextValue: string) => onSearch(nextValue), 300),
-    [onSearch]
+    debounce((nextValue) => setSearchTerm(nextValue), 300),
+    [setSearchTerm]
   );
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
     debouncedSearch(event.target.value);
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      onSearch(searchTerm);
-    }
-  };
+  const toggleSearch = () => setIsOpen(!isOpen);
 
   return (
-    <SearchInput
-      type="text"
-      placeholder={placeholder}
-      value={searchTerm}
-      onChange={handleChange}
-      onKeyPress={handleKeyPress}
-    />
+    <Container>
+      <SearchInput
+        type="text"
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={handleChange}
+        isOpen={isOpen}
+      />
+      <SearchIcon onClick={toggleSearch}>
+        <FontAwesomeIcon icon={faSearch} />
+      </SearchIcon>
+    </Container>
   );
 };
 

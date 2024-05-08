@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import CategoryCard from './CategoryCard';
 import categoriesData from '../data/categories.json';
+import { useSearch } from '../context/SearchContext';
 
 import { CategoryData } from '../components/types';
 
@@ -14,16 +15,18 @@ const Container = styled.div`
   padding: 20px;
 `;
 
-interface CategoriesProps {
-  searchTerm: string;
-  setSearchTerm: (value: string) => void;
-}
+const FullPageCenterWrapper = styled.div`
+  min-width: 100vw;
+`;
 
-const CategoriesList = ({ searchTerm, setSearchTerm }: CategoriesProps) => {
+const CategoriesList = () => {
+
+  const { searchTerm } = useSearch();
+
   const searchCategories = (categories: CategoryData[], term: string) => {
     return categories.filter(category => {
       const categoryMatches = category.name.toLowerCase().includes(term.toLowerCase());
-      const subcategoryMatches = category.subcategories.some((subcategory: string)=>
+      const subcategoryMatches = category.subcategories.some(subcategory =>
         subcategory.toLowerCase().includes(term.toLowerCase())
       );
       return categoryMatches || subcategoryMatches;
@@ -33,7 +36,7 @@ const CategoriesList = ({ searchTerm, setSearchTerm }: CategoriesProps) => {
   const filteredCategories = searchCategories(categoriesData as CategoryData[], searchTerm);
 
   return (
-    <div>
+    <FullPageCenterWrapper>
       <Container>
         {filteredCategories.map((category, index) => (
           <CategoryCard
@@ -46,7 +49,7 @@ const CategoriesList = ({ searchTerm, setSearchTerm }: CategoriesProps) => {
           />
         ))}
       </Container>
-    </div>
+    </FullPageCenterWrapper>
   );
 };
 

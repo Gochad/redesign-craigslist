@@ -1,13 +1,7 @@
 import React, { useState, useContext, createContext, FC, ReactNode } from 'react';
 import styled from 'styled-components';
 import PageLayout from './PageLayout';
-
-// Interface definitions
-interface User {
-  name: string;
-  email: string;
-  location: string;
-}
+import { User } from '../components/types';
 
 interface UserContextType {
   user: User | null;
