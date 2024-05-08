@@ -67,7 +67,7 @@ const Input = styled.textarea`
   }
 `;
 
-const ForumPage = () => {
+const ForumPage: React.FC = () => {
     const [posts, setPosts] = useState<Reply[]>(() => {
         const localData = localStorage.getItem('forumPosts');
         return localData ? JSON.parse(localData) : forumPosts;
@@ -79,24 +79,42 @@ const ForumPage = () => {
         localStorage.setItem('forumPosts', JSON.stringify(posts));
     }, [posts]);
 
-    const handleReply = (postId: number, replyContent: string = '') => {
+    const handleReply = (postId: number, replyId: number | null = null, replyContent: string = '') => {
+        const updateReplies = (replies: Reply[]): Reply[] => {
+            return replies.map(reply => {
+                if (reply.id === replyId) {
+                    return { ...reply, replies: addReply(reply.replies, replyId, replyContent) };
+                } else {
+                    return { ...reply, replies: updateReplies(reply.replies) };
+                }
+            });
+        };
+
         const newPosts = posts.map(post => {
             if (post.id === postId) {
-                const newReplyId = Math.max(0, ...post.replies.map(r => r.id)) + 1;
-                const newReply = {
-                    id: newReplyId,
-                    title: post.title,
-                    author: "Current User",
-                    content: replyContent,
-                    replies: []
-                };
-                setEditId(newReplyId);
-                setEditText(replyContent);
-                return { ...post, replies: [...post.replies, newReply] };
+                if (!replyId) {  // Root level reply
+                    return { ...post, replies: addReply(post.replies, postId, replyContent) };
+                } else {  // Nested reply
+                    return { ...post, replies: updateReplies(post.replies) };
+                }
             }
             return post;
         });
         setPosts(newPosts);
+    };
+
+    const addReply = (replies: Reply[], replyId: number, replyContent: string): Reply[] => {
+        const newReplyId = Math.max(0, ...replies.map(r => r.id)) + 1;
+        const newReply = {
+            id: newReplyId,
+            title: "New Reply",
+            author: "Current User",
+            content: replyContent,
+            replies: []
+        };
+        setEditId(newReplyId);
+        setEditText('');
+        return [...replies, newReply];
     };
 
     const startEdit = (replyId: number, currentText: string) => {
@@ -105,21 +123,25 @@ const ForumPage = () => {
     };
 
     const handleEdit = (replyId: number) => {
-        const newPosts = posts.map(post => {
-            const newReplies = post.replies.map(reply => {
+        const updateReplies = (replies: Reply[]): Reply[] => {
+            return replies.map(reply => {
                 if (reply.id === replyId) {
                     return { ...reply, content: editText };
+                } else {
+                    return { ...reply, replies: updateReplies(reply.replies) };
                 }
-                return reply;
             });
-            return { ...post, replies: newReplies };
+        };
+
+        const newPosts = posts.map(post => {
+            return { ...post, replies: updateReplies(post.replies) };
         });
         setPosts(newPosts);
         setEditId(null);
         setEditText('');
     };
 
-    const renderReplies = (replies: Reply[], postId: number) => {
+    const renderReplies = (replies: Reply[], postId: number): JSX.Element[] => {
         return replies.map(reply => (
             <ReplyElem key={reply.id}>
                 <PostContent>
@@ -140,7 +162,7 @@ const ForumPage = () => {
                     ) : (
                         <>
                             <Button onClick={() => startEdit(reply.id, reply.content)}>Edit</Button>
-                            <Button onClick={() => handleReply(reply.id)}>Reply</Button>
+                            <Button onClick={() => handleReply(postId, reply.id)}>Reply</Button>
                         </>
                     )}
                 </ButtonContainer>
