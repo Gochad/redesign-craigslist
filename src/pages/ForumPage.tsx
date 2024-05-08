@@ -26,9 +26,8 @@ const PostContainer = styled.div`
 
 const ReplyElem = styled.div`
   display: flex;
-  flex-direction: row;
   background: #f9f9f9;
-  margin-top: 10px;
+  margin-top: 15px;
   padding: 15px;
   border-left: 4px solid #007bff;
   border-radius: 5px;
@@ -47,6 +46,7 @@ const ButtonContainer = styled.div`
   display: flex;
   gap: 10px;
   margin-top: 10px;
+  margin-left: 10px;
 `;
 
 const Button = styled.button`
