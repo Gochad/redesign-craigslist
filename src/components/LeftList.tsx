@@ -2,7 +2,7 @@ import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { Link } from 'react-router-dom';
 import Calendar from './Calendar';
-import linksData from '../data/header-links.json';
+import linksData from '../data/panel-links.json';
 import { LinkData } from './types';
 
 const menuStyles = {
@@ -11,7 +11,7 @@ const menuStyles = {
     width: '36px',
     height: '30px',
     left: '36px',
-    top: '36px',
+    top: '33px',
     zIndex: '1000',
   },
   bmCrossButton: {
