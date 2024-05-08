@@ -22,16 +22,10 @@ const Select = styled.select`
   border-radius: 4px;
 `;
 
-interface ILocation {
-  id: string;
-  name: string;
-  children?: ILocation[];
-}
-
 const LocationSwitcher = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
-  const locations: ILocation[] = locationsData as unknown as ILocation[];
+  const locations: Location[] = locationsData as unknown as Location[];
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -41,8 +35,8 @@ const LocationSwitcher = () => {
     setSelectedLocation(event.target.value);
   };
 
-  const filterLocations = (locations: ILocation[], searchTerm: string): ILocation[] => {
-    return locations.reduce((acc: ILocation[], location) => {
+  const filterLocations = (locations: Location[], searchTerm: string): Location[] => {
+    return locations.reduce((acc: Location[], location) => {
       const match = location.name.toLowerCase().includes(searchTerm.toLowerCase());
       const children = location.children ? filterLocations(location.children, searchTerm) : [];
 
@@ -53,7 +47,7 @@ const LocationSwitcher = () => {
     }, []);
   };
 
-  const renderOptions = (location: ILocation, prefix: string = '') => {
+  const renderOptions = (location: Location, prefix: string = '') => {
     const options = [
       <option key={location.id} value={location.id}>
         {prefix + location.name}

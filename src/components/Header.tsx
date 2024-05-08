@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import LocationSwitcher from './LocationSwitcher';
+import SearchBar from '../components/SearchBar';
+import { useSearch } from '../context/SearchContext';
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -49,7 +51,7 @@ const StyledLinkButton = styled.div`
   margin-left: 20px;
   cursor: pointer;
   font-size: 14px;
-  text-decoration: none; // Remove underline from links
+  text-decoration: none;
 
   &:hover {
     background-color: #0056b3;
@@ -76,6 +78,7 @@ const Header = () => {
           </StyledLinkButton>
         </Link>
         <LocationSwitcher />
+        <SearchBar placeholder="Search..." onSearch={useSearch} />
       </ClickableElems>
     </HeaderContainer>
   );
