@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { debounce } from 'lodash';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSearch } from '../context/SearchContext';
 
 const Container = styled.div`
   display: flex;
@@ -43,18 +44,13 @@ const SearchIcon = styled.div`
   z-index: 2;
 `;
 
-interface SearchBarProps {
-  placeholder: string;
-  onSearch: (searchTerm: string) => void;
-}
-
-const SearchBar = ({ placeholder, onSearch }: SearchBarProps) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const SearchBar = () => {
+  const { searchTerm, setSearchTerm } = useSearch(); // use search contex
   const [isOpen, setIsOpen] = useState(false);
 
   const debouncedSearch = useCallback(
-    debounce((nextValue) => onSearch(nextValue), 300),
-    [onSearch]
+    debounce((nextValue) => setSearchTerm(nextValue), 300),
+    [setSearchTerm]
   );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +64,7 @@ const SearchBar = ({ placeholder, onSearch }: SearchBarProps) => {
     <Container>
       <SearchInput
         type="text"
-        placeholder={placeholder}
+        placeholder="Search..."
         value={searchTerm}
         onChange={handleChange}
         isOpen={isOpen}

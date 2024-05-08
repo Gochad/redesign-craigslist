@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import LocationSwitcher from './LocationSwitcher';
 import SearchBar from '../components/SearchBar';
-import { useSearch } from '../context/SearchContext';
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -78,7 +77,7 @@ const Header = () => {
           </StyledLinkButton>
         </Link>
         <LocationSwitcher />
-        <SearchBar placeholder="Search..." onSearch={useSearch} />
+        <SearchBar />
       </ClickableElems>
     </HeaderContainer>
   );
