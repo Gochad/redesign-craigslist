@@ -164,6 +164,11 @@ const ForumPage: React.FC = () => {
         setEditText(currentText);
     };
 
+    const cancelEdit = () => {
+        setEditId(null);
+        setEditText('');
+    };
+
     const handleEdit = (replyId: number) => {
         const updateReplies = (replies: Reply[]): Reply[] => {
             return replies.map(reply => {
@@ -200,7 +205,10 @@ const ForumPage: React.FC = () => {
                 </PostContent>
                 <ButtonContainer>
                     {editId === reply.id ? (
-                        <Button onClick={() => handleEdit(reply.id)}>Save</Button>
+                        <>
+                            <Button onClick={() => handleEdit(reply.id)}>Save</Button>
+                            <Button onClick={cancelEdit}>Cancel</Button>
+                        </>
                     ) : (
                         <>
                             <Button onClick={() => startEdit(reply.id, reply.content)}>Edit</Button>
