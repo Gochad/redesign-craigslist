@@ -39,8 +39,8 @@ const Content = styled.p`
   color: #333;
   line-height: 1.6;
   font-size: 16px;
-  padding-bottom: 10px;
   border-bottom: 1px solid #eaeaea;
+  margin: 0;
 `;
 
 const ButtonContainer = styled.div`
@@ -65,8 +65,13 @@ const Button = styled.button`
   }
 `;
 
+const ReplyButton = styled(Button)`
+  padding: 8px 12px;
+  margin: 0;
+`;
+
 const Input = styled.textarea`
-  width: 100%;
+  width: 90%;
   padding: 10px;
   margin-top: 10px;
   border: 2px solid #ccc;
@@ -78,15 +83,31 @@ const Input = styled.textarea`
 `;
 
 const Title = styled.h3`
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
   color: #007bff;
   font-size: 24px;
   font-weight: bold;
 `;
 
+
 const PostContent = styled.div`
   flex: 1;
 `;
+
+const ContentArea = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TextPost = styled.div`
+  display: block;
+  margin-right: 20px;
+`;
+
+const PostP = styled.p`
+  margin-bottom: 30px;
+`
 
 const ForumPage: React.FC = () => {
     const [posts, setPosts] = useState<Reply[]>(() => {
@@ -113,9 +134,9 @@ const ForumPage: React.FC = () => {
 
         const newPosts = posts.map(post => {
             if (post.id === postId) {
-                if (!replyId) {  // Root level reply
+                if (!replyId) {
                     return { ...post, replies: addReply(post.replies, postId, replyContent) };
-                } else {  // Nested reply
+                } else { 
                     return { ...post, replies: updateReplies(post.replies) };
                 }
             }
@@ -173,7 +194,7 @@ const ForumPage: React.FC = () => {
                             autoFocus
                         />
                     ) : (
-                        <p><strong>{reply.author}:</strong> {reply.content}</p>
+                        <PostP><strong>{reply.author}:</strong> {reply.content}</PostP>
                     )}
                     {reply.replies && reply.replies.length > 0 && renderReplies(reply.replies, reply.id)}
                 </PostContent>
@@ -196,14 +217,14 @@ const ForumPage: React.FC = () => {
             <Section>
                 {posts.map(post => (
                     <PostContainer key={post.id}>
-                        <PostContent>
-                            <Title>{post.title}</Title>
-                            <Content>{post.content}</Content>
-                            {post.replies && post.replies.length > 0 && renderReplies(post.replies, post.id)}
-                        </PostContent>
-                        <ButtonContainer>
-                            <Button onClick={() => handleReply(post.id)}>Reply</Button>
-                        </ButtonContainer>
+                        <ContentArea>
+                            <TextPost>
+                                <Title>{post.title}</Title>
+                                <Content>{post.content}</Content>
+                            </TextPost>
+                            <ReplyButton onClick={() => handleReply(post.id)}>Reply</ReplyButton>
+                        </ContentArea>
+                        {post.replies && post.replies.length > 0 && renderReplies(post.replies, post.id)}
                     </PostContainer>
                 ))}
             </Section>
