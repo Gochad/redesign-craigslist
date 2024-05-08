@@ -53,7 +53,7 @@ const menuStyles = {
     background: "rgba(0, 0, 0, 0.3)",
   },
   bmBurgerBars: {
-    background: "#373a47",
+    background: "#39004d",
   },
 };
 

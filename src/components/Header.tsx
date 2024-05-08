@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import LocationSwitcher from './LocationSwitcher';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import LocationSwitcher from "./LocationSwitcher";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -42,7 +42,7 @@ const ClickableElems = styled.div`
 const StyledLinkButton = styled.div`
   display: flex;
   align-items: center;
-  background-color: #007bff;
+  background-color: #39004d; //#007bff;
   color: white;
   padding: 10px 15px;
   border-radius: 5px;
@@ -52,26 +52,30 @@ const StyledLinkButton = styled.div`
   text-decoration: none; // Remove underline from links
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #5c3b69; //#0056b3;
   }
 `;
 
 const Header = () => {
   return (
     <HeaderContainer>
-      <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
         <Title>
           <Logo src="/logo.avif" alt="Craigslist Logo" />
           Craigslist Redesign
         </Title>
       </Link>
       <ClickableElems>
-        <Link to="/create" style={{ textDecoration: 'none' }}>
+        <Link to="/create" style={{ textDecoration: "none" }}>
           <StyledLinkButton>create post</StyledLinkButton>
         </Link>
-        <Link to="/user" style={{ textDecoration: 'none' }}>
+        <Link to="/user" style={{ textDecoration: "none" }}>
           <StyledLinkButton>
-            <FontAwesomeIcon icon={faUser} size="lg" style={{ marginRight: '5px' }} />
+            <FontAwesomeIcon
+              icon={faUser}
+              size="lg"
+              style={{ marginRight: "5px" }}
+            />
             user
           </StyledLinkButton>
         </Link>

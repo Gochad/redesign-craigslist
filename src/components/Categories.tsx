@@ -11,6 +11,7 @@ const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  // background-color: red;
 `;
 
 interface CategoriesProps {
@@ -50,6 +51,7 @@ const CategoriesList = ({ searchTerm, setSearchTerm }: CategoriesProps) => {
               gridColumn:
                 index === 2 || index === 3 ? 3 + index - 2 : undefined,
               gridRow: index === 2 || index === 3 ? "1 / 3" : undefined,
+              backgroundColor: "white",
             }}
             category={category}
           />
