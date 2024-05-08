@@ -17,6 +17,7 @@ import SystemStatusPage from './pages/HeaderLinks/SystemStatus';
 import CreatePost from './pages/CreatePost';
 import FooterPage from './pages/FooterPage';
 import UserPage from './pages/UserPage';
+import ForumPage from './pages/ForumPage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
                   <Route path="/subcategories" element={<Subcategory/>}></Route>
                   <Route path="/create" element={<CreatePost/>}></Route>
                   <Route path="/user" element={<UserPage/>} />
+                  <Route path="/forum" element={<ForumPage/>} />
 
                   <Route path="/:pageName" element={<FooterPage />} />
 
