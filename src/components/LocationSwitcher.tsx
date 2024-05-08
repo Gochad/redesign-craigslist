@@ -11,16 +11,32 @@ const Container = styled.div`
 `;
 
 const Input = styled.input`
-  padding: 8px;
+  padding: 12px 20px;
   flex: 1 0 50%;
   box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  &:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+  }
 `;
 
 const Select = styled.select`
+  padding: 12px 20px;
   flex: 1 0 50%;
-  padding: 8px;
-  border-radius: 4px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+
+  &:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+  }
 `;
+
 
 const LocationSwitcher = () => {
   const [searchTerm, setSearchTerm] = useState('');

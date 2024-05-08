@@ -17,7 +17,7 @@ const SearchInput = styled.input<{ isOpen?: boolean; }>`
   position: absolute;
   right: 0;
   width: ${props => props.isOpen ? 'calc(100% - 80px)' : '0'};
-  height: 40px;
+  height: 15px;
   padding: ${props => props.isOpen ? '12px 20px' : '12px 0px'};
   border: 1px solid #ccc;
   border-radius: 5px;
