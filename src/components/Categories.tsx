@@ -15,6 +15,9 @@ const Container = styled.div`
   padding: 20px;
 `;
 
+const FullPageCenterWrapper = styled.div`
+  min-width: 100vw;
+`;
 
 const CategoriesList = () => {
 
@@ -33,7 +36,7 @@ const CategoriesList = () => {
   const filteredCategories = searchCategories(categoriesData as CategoryData[], searchTerm);
 
   return (
-    <div>
+    <FullPageCenterWrapper>
       <Container>
         {filteredCategories.map((category, index) => (
           <CategoryCard
@@ -46,7 +49,7 @@ const CategoriesList = () => {
           />
         ))}
       </Container>
-    </div>
+    </FullPageCenterWrapper>
   );
 };
 
