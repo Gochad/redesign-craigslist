@@ -9,7 +9,7 @@ const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: #fff;
-  width: 100%;
+  width: 1000px;
   border-radius: 10px;
   margin: 20px 0;
   padding: 20px;
