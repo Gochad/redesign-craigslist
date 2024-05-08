@@ -72,23 +72,26 @@ const ForumPage = () => {
         const localData = localStorage.getItem('forumPosts');
         return localData ? JSON.parse(localData) : forumPosts;
     });
-    const [editId, setEditId] = useState<number>(0);
+    const [editId, setEditId] = useState<number | null>(null);
     const [editText, setEditText] = useState('');
 
     useEffect(() => {
         localStorage.setItem('forumPosts', JSON.stringify(posts));
     }, [posts]);
 
-    const handleReply = (postId: number, replyContent: string) => {
+    const handleReply = (postId: number, replyContent: string = '') => {
         const newPosts = posts.map(post => {
             if (post.id === postId) {
+                const newReplyId = Math.max(0, ...post.replies.map(r => r.id)) + 1;
                 const newReply = {
-                    id: Math.max(...post.replies.map(r => r.id)) + 1,
+                    id: newReplyId,
                     title: post.title,
                     author: "Current User",
                     content: replyContent,
                     replies: []
                 };
+                setEditId(newReplyId);
+                setEditText(replyContent);
                 return { ...post, replies: [...post.replies, newReply] };
             }
             return post;
@@ -112,7 +115,8 @@ const ForumPage = () => {
             return { ...post, replies: newReplies };
         });
         setPosts(newPosts);
-        setEditId(0);
+        setEditId(null);
+        setEditText('');
     };
 
     const renderReplies = (replies: Reply[], postId: number) => {
@@ -136,7 +140,7 @@ const ForumPage = () => {
                     ) : (
                         <>
                             <Button onClick={() => startEdit(reply.id, reply.content)}>Edit</Button>
-                            <Button onClick={() => handleReply(reply.id, "Reply text here")}>Reply</Button>
+                            <Button onClick={() => handleReply(reply.id)}>Reply</Button>
                         </>
                     )}
                 </ButtonContainer>
@@ -155,7 +159,7 @@ const ForumPage = () => {
                             {post.replies && post.replies.length > 0 && renderReplies(post.replies, post.id)}
                         </PostContent>
                         <ButtonContainer>
-                            <Button onClick={() => handleReply(post.id, "Reply text here")}>Reply</Button>
+                            <Button onClick={() => handleReply(post.id)}>Reply</Button>
                         </ButtonContainer>
                     </PostContainer>
                 ))}
