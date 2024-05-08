@@ -7,64 +7,84 @@ import { Section } from './HeaderLinks/styles';
 
 const PostContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  &:last-child {
-    border-bottom: none;
+  flex-direction: column;
+  background: #fff;
+  width: 100%;
+  border-radius: 10px;
+  margin: 20px 0;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border: 2px solid #007bff;
+  border-bottom: 4px solid #007bff;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
   }
-`;
-
-const PostContent = styled.div`
-  flex: 1;
-`;
-
-const Title = styled.h3`
-  margin: 0;
-  color: #007bff;
-`;
-
-const Content = styled.p`
-  color: #666;
 `;
 
 const ReplyElem = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-left: 20px;
-  padding: 10px;
-  border-left: 3px solid #ccc;
-  align-items: baseline;
+  flex-direction: column;
+  background: #f9f9f9;
+  margin-top: 10px;
+  padding: 15px;
+  border-left: 4px solid #007bff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+`;
+
+const Content = styled.p`
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaeaea;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   gap: 10px;
+  margin-top: 10px;
 `;
 
 const Button = styled.button`
-  padding: 5px 10px;
+  padding: 10px 15px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
 `;
 
 const Input = styled.textarea`
-  flex: 1;
-  padding: 8px;
-  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
   border: 2px solid #ccc;
   border-radius: 4px;
-  width: 500px;
-  height: 70px;
   &:focus {
     border-color: #007bff;
     outline: none;
   }
+`;
+
+const Title = styled.h3`
+  margin-bottom: 10px;
+  color: #007bff;
+  font-size: 24px;
+  font-weight: bold;
+`;
+
+const PostContent = styled.div`
+  flex: 1;
 `;
 
 const ForumPage: React.FC = () => {
