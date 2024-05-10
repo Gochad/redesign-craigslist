@@ -16,6 +16,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   width: 100%;
   top: 0;
+  z-index: 1000;
 `;
 
 const Title = styled.h1`
@@ -37,6 +38,7 @@ const Logo = styled.img`
 const ClickableElems = styled.div`
   display: flex;
   align-items: center;
+  margin-left: -40px;
 `;
 
 const StyledLinkButton = styled.div`
@@ -80,7 +82,6 @@ const Header = () => {
           </StyledLinkButton>
         </Link>
         <LocationSwitcher />
-        <SearchBar />
         <Link to="/forum" style={{ textDecoration: "none" }}>
           <StyledLinkButton>
             <FontAwesomeIcon
@@ -91,6 +92,7 @@ const Header = () => {
             forum
           </StyledLinkButton>
         </Link>
+        <SearchBar />
       </ClickableElems>
     </HeaderContainer>
   );
