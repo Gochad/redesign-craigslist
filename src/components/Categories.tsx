@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import CategoryCard from './CategoryCard';
-import categoriesData from '../data/categories.json';
-import { useSearch } from '../context/SearchContext';
+import React from "react";
+import styled from "styled-components";
+import CategoryCard from "./CategoryCard";
+import categoriesData from "../data/categories.json";
+import { useSearch } from "../context/SearchContext";
 
-import { CategoryData } from '../components/types';
+import { CategoryData } from "../components/types";
 
 const Container = styled.div`
   display: grid;
@@ -13,6 +13,7 @@ const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  // background-color: red;
 `;
 
 const FullPageCenterWrapper = styled.div`
@@ -20,20 +21,24 @@ const FullPageCenterWrapper = styled.div`
 `;
 
 const CategoriesList = () => {
-
   const { searchTerm } = useSearch();
 
   const searchCategories = (categories: CategoryData[], term: string) => {
-    return categories.filter(category => {
-      const categoryMatches = category.name.toLowerCase().includes(term.toLowerCase());
-      const subcategoryMatches = category.subcategories.some(subcategory =>
+    return categories.filter((category) => {
+      const categoryMatches = category.name
+        .toLowerCase()
+        .includes(term.toLowerCase());
+      const subcategoryMatches = category.subcategories.some((subcategory) =>
         subcategory.toLowerCase().includes(term.toLowerCase())
       );
       return categoryMatches || subcategoryMatches;
     });
   };
 
-  const filteredCategories = searchCategories(categoriesData as CategoryData[], searchTerm);
+  const filteredCategories = searchCategories(
+    categoriesData as CategoryData[],
+    searchTerm
+  );
 
   return (
     <FullPageCenterWrapper>
@@ -42,8 +47,10 @@ const CategoriesList = () => {
           <CategoryCard
             key={category.name}
             style={{
-              gridColumn: index === 2 || index === 3 ? 3 + index - 2 : undefined,
-              gridRow: index === 2 || index === 3 ? '1 / 3' : undefined
+              gridColumn:
+                index === 2 || index === 3 ? 3 + index - 2 : undefined,
+              gridRow: index === 2 || index === 3 ? "1 / 3" : undefined,
+              backgroundColor: "white",
             }}
             category={category}
           />

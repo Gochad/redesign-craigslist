@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import PageLayout from './PageLayout';
-import itemsData from '../data/postings.json';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import PageLayout from "./PageLayout";
+import itemsData from "../data/postings.json";
 
 const SubcategoryContainer = styled.div`
   display: flex;
@@ -10,7 +10,7 @@ const SubcategoryContainer = styled.div`
   padding: 20px;
   padding-top: 70px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.10);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const ItemsGrid = styled.div`
@@ -28,12 +28,12 @@ const ListItem = styled.div`
   border: 1px solid #ccc;
   border-radius: 5px;
   background: #ffffff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease-in-out;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -55,65 +55,69 @@ const Detail = styled.p`
 `;
 
 interface FavoriteButtonProps {
-    favorited: boolean; 
+  favorited: boolean;
 }
 
 const FavoriteButton = styled.button<FavoriteButtonProps>`
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: ${props => props.favorited ? '#ff4500' : '#ccc'};
-    font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: ${(props) => (props.favorited ? "#ff4500" : "#ccc")};
+  font-size: 24px;
 `;
 
 const Subcategory = () => {
-    const [items, setItems] = useState(() => {
-        const localData = localStorage.getItem('posts');
-        const localItems = localData ? JSON.parse(localData) : [];
-        return [...itemsData, ...localItems];
+  const [items, setItems] = useState(() => {
+    const localData = localStorage.getItem("posts");
+    const localItems = localData ? JSON.parse(localData) : [];
+    return [...itemsData, ...localItems];
+  });
+
+  const [favorites, setFavorites] = useState(() => {
+    const localFavorites = localStorage.getItem("favorites");
+    return localFavorites ? JSON.parse(localFavorites) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("posts", JSON.stringify(items));
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [items, favorites]);
+
+  const toggleFavorite = (id: string) => {
+    setFavorites((favs: string[]) => {
+      const newFavorites = favs.includes(id)
+        ? favs.filter((fav) => fav !== id)
+        : [...favs, id];
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      return newFavorites;
     });
+  };
 
-    const [favorites, setFavorites] = useState(() => {
-        const localFavorites = localStorage.getItem('favorites');
-        return localFavorites ? JSON.parse(localFavorites) : [];
-    });
-
-    useEffect(() => {
-        localStorage.setItem('posts', JSON.stringify(items));
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-    }, [items, favorites]);
-
-    const toggleFavorite = (id: string) => {
-        setFavorites((favs: string[]) => {
-            const newFavorites = favs.includes(id) ? favs.filter(fav => fav !== id) : [...favs, id];
-            localStorage.setItem('favorites', JSON.stringify(newFavorites));
-            return newFavorites;
-        });
-    };
-
-    return (
-        <PageLayout>
-            <SubcategoryContainer>
-                <ItemsGrid>
-                    {items.map(item => (
-                        <ListItem key={item.title}>
-                            <FavoriteButton
-                                onClick={() => toggleFavorite(item.title)}
-                                favorited={favorites.includes(item.title)}
-                            >
-                                {favorites.includes(item.title) ? '★' : '☆'}
-                            </FavoriteButton>
-                            <Content>
-                                <Title>{item.title} - {item.price}</Title>
-                                <Detail>Location: {item.area}</Detail>
-                                <Detail>Description: {item.description}</Detail>
-                            </Content>
-                        </ListItem>
-                    ))}
-                </ItemsGrid>
-            </SubcategoryContainer>
-        </PageLayout>
-    );
+  return (
+    <PageLayout>
+      <SubcategoryContainer>
+        <ItemsGrid>
+          {items.map((item) => (
+            <ListItem key={item.title}>
+              <FavoriteButton
+                onClick={() => toggleFavorite(item.title)}
+                favorited={favorites.includes(item.title)}
+              >
+                {favorites.includes(item.title) ? "★" : "☆"}
+              </FavoriteButton>
+              <Content>
+                <Title>
+                  {item.title} - {item.price}
+                </Title>
+                <Detail>Location: {item.area}</Detail>
+                <Detail>Description: {item.description}</Detail>
+              </Content>
+            </ListItem>
+          ))}
+        </ItemsGrid>
+      </SubcategoryContainer>
+    </PageLayout>
+  );
 };
 
 export default Subcategory;
