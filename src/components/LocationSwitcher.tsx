@@ -1,5 +1,6 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import Select, { components } from 'react-select';
 import locationsData from "../data/location.json";
 import { Location } from "./types";
 
@@ -7,98 +8,88 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   padding: 20px;
+  padding-right: 0;
   gap: 10px;
 `;
 
-const Input = styled.input`
-  padding: 12px 20px;
-  flex: 1 0 50%;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-
-  &:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
-  }
+const StyledSelect = styled(Select)`
+  width: 200px;
 `;
 
-const Select = styled.select`
-  padding: 12px 20px;
-  flex: 1 0 50%;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-
-  &:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
-  }
+const Dot = styled.span`
+  height: 6px;
+  width: 6px;
+  margin-right: 5px;
+  background-color: #000;
+  border-radius: 50%;
+  display: inline-block;
 `;
+
+const Option = ({ children, ...props }: any) => {
+  const { data } = props;
+  return (
+    <components.Option {...props}>
+      {data.level > 0 && <Dot />}
+      {children}
+    </components.Option>
+  );
+};
 
 const LocationSwitcher = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const locations: Location[] = locationsData as unknown as Location[];
+  const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+  const handleChange = (option: any) => {
+    setSelectedOption(option);
   };
 
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedLocation(event.target.value);
-  };
+  const options = locationsData.reduce((acc: any[], location) => {
+    return [...acc, ...generateOptions(location)];
+  }, []);
 
-  const filterLocations = (
-    locations: Location[],
-    searchTerm: string
-  ): Location[] => {
-    return locations.reduce((acc: Location[], location) => {
-      const match = location.name
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-      const children = location.children
-        ? filterLocations(location.children, searchTerm)
-        : [];
-
-      if (match || children.length) {
-        acc.push({ ...location, children });
-      }
-      return acc;
-    }, []);
-  };
-
-  const renderOptions = (location: Location, prefix: string = "") => {
-    const options = [
-      <option key={location.id} value={location.id}>
-        {prefix + location.name}
-      </option>,
-    ];
-
+  function generateOptions(location: Location, level: number = 0): any[] {
+    let res = [{
+      value: location.id,
+      label: location.name,
+      level: level
+    }];
     if (location.children) {
-      location.children.forEach((child) => {
-        options.push(...renderOptions(child, prefix + "--"));
+      location.children.forEach(child => {
+        res = [...res, ...generateOptions(child, level + 1)];
       });
     }
+    return res;
+  }
 
-    return options;
+  const customStyles = {
+    control: (provided: any) => ({
+      ...provided,
+      minWidth: '200px',
+    }),
+    menu: (provided: any) => ({
+      ...provided,
+      width: '200px'
+    }),
+    option: (styles: any, { data }: any) => {
+      return {
+        ...styles,
+        paddingLeft: `${20 + data.level * 10}px`,
+        display: 'flex',
+        alignItems: 'center',
+        fontWeight: data.level === 0 ? 'bold' : 'normal',
+      };
+    }
   };
-
-  const filteredLocations = filterLocations(locations, searchTerm);
 
   return (
     <Container>
-      <Input
-        type="text"
-        placeholder="Search location..."
-        value={searchTerm}
-        onChange={handleSearchChange}
+      <StyledSelect
+        value={selectedOption}
+        onChange={handleChange}
+        options={options}
+        components={{ Option }}
+        placeholder="Choose location"
+        styles={customStyles}
       />
-      <Select value={selectedLocation} onChange={handleChange}>
-        <option value="">Choose location</option>
-        {filteredLocations.map((location) => renderOptions(location))}
-      </Select>
     </Container>
   );
 };
