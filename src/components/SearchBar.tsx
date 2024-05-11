@@ -15,13 +15,13 @@ const Container = styled.div`
 
 const SearchInput = styled.input<{ isOpen?: boolean; }>`
   position: absolute;
-  right: 0;
+  left: ${props => props.isOpen ? '35px' : '0'};
   width: ${props => props.isOpen ? 'calc(100% - 80px)' : '0'};
+  transition: width 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
   height: 15px;
   padding: ${props => props.isOpen ? '12px 20px' : '12px 0px'};
   border: 1px solid #ccc;
   border-radius: 5px;
-  transition: width 0.3s ease, padding 0.3s ease;
   opacity: ${props => props.isOpen ? '1' : '0'};
   visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
   overflow: hidden;

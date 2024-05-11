@@ -154,7 +154,7 @@ const ForumPage: React.FC = () => {
         const newReply = {
             id: newReplyId,
             title: "New Reply",
-            author: "Current User",
+            author: "Anonymous",
             content: replyContent,
             replies: []
         };
