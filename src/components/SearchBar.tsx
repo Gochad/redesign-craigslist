@@ -1,4 +1,4 @@
-import React, { useState, useCallback, ChangeEvent } from 'react';
+import React, { useState, useCallback, useRef, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { debounce } from 'lodash';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'; 
@@ -45,6 +45,7 @@ const SearchIcon = styled.div`
 `;
 
 const SearchBar = () => {
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const { searchTerm, setSearchTerm } = useSearch(); // use search contex
   const [isOpen, setIsOpen] = useState(false);
 
@@ -58,11 +59,20 @@ const SearchBar = () => {
     debouncedSearch(event.target.value);
   };
 
-  const toggleSearch = () => setIsOpen(!isOpen);
+  const toggleSearch = () => {
+    setIsOpen(!isOpen);
+    if (!isOpen) {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 300);
+    }
+  };
+  
 
   return (
     <Container>
       <SearchInput
+        ref={searchInputRef}
         type="text"
         placeholder="Search..."
         value={searchTerm}
