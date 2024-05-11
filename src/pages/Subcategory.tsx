@@ -13,13 +13,16 @@ const SubcategoryContainer = styled.div`
   padding-top: 70px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 100vw;
 `;
 
 const ItemsGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 5px;
+  width: 100%;
 `;
 
 const ListItem = styled.div`
@@ -30,6 +33,7 @@ const ListItem = styled.div`
   border: 1px solid #ccc;
   border-radius: 5px;
   background: #ffffff;
+  min-width: 500px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease-in-out;
 
