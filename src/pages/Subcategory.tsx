@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useSearch } from "../context/SearchContext";
 import styled from "styled-components";
 import PageLayout from "./PageLayout";
 import itemsData from "../data/postings.json";
+import { Item } from "../components/types";
 
 const SubcategoryContainer = styled.div`
   display: flex;
@@ -67,21 +69,32 @@ const FavoriteButton = styled.button<FavoriteButtonProps>`
 `;
 
 const Subcategory = () => {
+  const { searchTerm } = useSearch();
+  const [filtered, setFiltered] = useState<Item[]>([]);
   const [items, setItems] = useState(() => {
     const localData = localStorage.getItem("posts");
     const localItems = localData ? JSON.parse(localData) : [];
     return [...itemsData, ...localItems];
   });
-
-  const [favorites, setFavorites] = useState(() => {
-    const localFavorites = localStorage.getItem("favorites");
-    return localFavorites ? JSON.parse(localFavorites) : [];
-  });
+  const [favorites, setFavorites] = useState<string[]>([]);
 
   useEffect(() => {
-    localStorage.setItem("posts", JSON.stringify(items));
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [items, favorites]);
+    const localData = localStorage.getItem("posts");
+    const localItems = localData ? JSON.parse(localData) : itemsData;
+    setItems(localItems);
+
+    const localFavorites = localStorage.getItem("favorites");
+    setFavorites(localFavorites ? JSON.parse(localFavorites) : []);
+  }, []);
+
+  useEffect(() => {
+    const filtered = items.filter(item =>
+      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.area.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFiltered(filtered);
+  }, [searchTerm, items]);
 
   const toggleFavorite = (id: string) => {
     setFavorites((favs: string[]) => {
@@ -97,7 +110,7 @@ const Subcategory = () => {
     <PageLayout>
       <SubcategoryContainer>
         <ItemsGrid>
-          {items.map((item) => (
+          {filtered.map((item) => (
             <ListItem key={item.title}>
               <FavoriteButton
                 onClick={() => toggleFavorite(item.title)}
