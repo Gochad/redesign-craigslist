@@ -193,7 +193,6 @@ const ForumPage: React.FC = () => {
     };
 
     const renderReplies = (replies: Reply[], postId: number): JSX.Element[] => {
-        console.log(user)
         return replies.map(reply => (
             <ReplyElem key={reply.id}>
                 <PostContent>
