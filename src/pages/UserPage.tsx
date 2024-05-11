@@ -1,45 +1,7 @@
-import React, { useState, useContext, createContext, FC, ReactNode } from 'react';
+import React, { useState, useContext, FC } from 'react';
 import styled from 'styled-components';
 import PageLayout from './PageLayout';
-import { User } from '../components/types';
-
-interface UserContextType {
-  user: User | null;
-  login: (username: string, password: string) => void;
-  register: (username: string, password: string, email: string) => void;
-  logout: () => void;
-}
-
-const defaultState: UserContextType = {
-  user: null,
-  login: () => {},
-  register: () => {},
-  logout: () => {},
-};
-
-const UserContext = createContext<UserContextType>(defaultState);
-
-export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-
-  const login = (username: string, password: string) => {
-    setUser({ name: username, email: `${username}@example.com`, location: "New York" });
-  };
-
-  const register = (username: string, password: string, email: string) => {
-    setUser({ name: username, email: email, location: "Los Angeles" });
-  };
-
-  const logout = () => {
-    setUser(null);
-  };
-
-  return (
-    <UserContext.Provider value={{ user, login, register, logout }}>
-      {children}
-    </UserContext.Provider>
-  );
-};
+import { UserContext } from '../context/UserContext';
 
 const StyledInput = styled.input`
   padding: 10px;
@@ -76,16 +38,7 @@ const StyledContainer = styled.div`
   border: 1px solid #d1d1d1;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-
-  @media (min-width: 480px) {
-    width: 80%;
-  }
-
-  @media (min-width: 768px) {
-    width: 400px;
-  }
 `;
-
 
 const UserInfo = styled.div`
   padding: 20px;
@@ -155,11 +108,9 @@ const UserSection: FC = () => {
 
 const UserPage: FC = () => {
   return (
-    <UserProvider>
-      <PageLayout>
-        <UserSection />
-      </PageLayout>
-    </UserProvider>
+    <PageLayout>
+      <UserSection />
+    </PageLayout>
   );
 };
 

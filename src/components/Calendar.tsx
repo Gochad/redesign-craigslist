@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
+  margin-top: 50px;
   table {
     width: 100%;
     border-collapse: collapse;
@@ -22,13 +23,14 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    min-width: 260px;
   }
 
   .header-controls h2 {
     margin: 0;
     font-size: 1.25rem;
-    width: 150px;
+    width: 250px;
+    text-align: center;
   }
 `;
 

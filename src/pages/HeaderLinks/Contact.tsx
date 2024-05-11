@@ -97,7 +97,6 @@ const ContactPage = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
     alert('Message sent! (not really, but imagine it did!)');
   };
 
