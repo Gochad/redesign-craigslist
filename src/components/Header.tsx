@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCoffee } from "@fortawesome/free-solid-svg-icons";
 import LocationSwitcher from "./LocationSwitcher";
 import SearchBar from "../components/SearchBar";
+import { UserContext } from "../context/UserContext"; 
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -59,6 +60,7 @@ const StyledLinkButton = styled.div`
 `;
 
 const Header = () => {
+  const { user } = useContext(UserContext);
   return (
     <HeaderContainer>
       <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
@@ -72,14 +74,10 @@ const Header = () => {
           <StyledLinkButton>create post</StyledLinkButton>
         </Link>
         <Link to="/user" style={{ textDecoration: "none" }}>
-          <StyledLinkButton>
-            <FontAwesomeIcon
-              icon={faUser}
-              size="lg"
-              style={{ marginRight: "5px" }}
-            />
-            user
-          </StyledLinkButton>
+        <StyledLinkButton>
+          <FontAwesomeIcon icon={faUser} size="lg" style={{ marginRight: "5px" }} />
+          {user ? `${user.name}` : "user"}
+        </StyledLinkButton>
         </Link>
         <LocationSwitcher />
         <Link to="/forum" style={{ textDecoration: "none" }}>

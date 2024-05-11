@@ -215,13 +215,12 @@ const ForumPage: React.FC = () => {
                             <Button onClick={cancelEdit}>Cancel</Button>
                         </>
                     ) : (
-                        isUserAuthor(reply.author) && (
                             <>
-                                <Button onClick={() => startEdit(reply.id, reply.content)}>Edit</Button>
+                                {isUserAuthor(reply.author) && (<Button onClick={() => startEdit(reply.id, reply.content)}>Edit</Button>)}
                                 <Button onClick={() => handleReply(postId, reply.id)}>Reply</Button>
                             </>
                         )
-                    )}
+                    }
                 </ButtonContainer>
             </ReplyElem>
         ));
