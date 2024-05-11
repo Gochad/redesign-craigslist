@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 import PageLayout from './PageLayout';
 import styled from 'styled-components';
 import forumPosts from '../data/forum-posts.json';
@@ -114,12 +115,15 @@ const ForumPage: React.FC = () => {
         const localData = localStorage.getItem('forumPosts');
         return localData ? JSON.parse(localData) : forumPosts;
     });
+    const { user } = useContext(UserContext);
     const [editId, setEditId] = useState<number | null>(null);
     const [editText, setEditText] = useState('');
 
     useEffect(() => {
         localStorage.setItem('forumPosts', JSON.stringify(posts));
     }, [posts]);
+
+    const isUserAuthor = (authorName: string) => user && user.name === authorName;
 
     const handleReply = (postId: number, replyId: number | null = null, replyContent: string = '') => {
         const updateReplies = (replies: Reply[]): Reply[] => {
@@ -189,6 +193,7 @@ const ForumPage: React.FC = () => {
     };
 
     const renderReplies = (replies: Reply[], postId: number): JSX.Element[] => {
+        console.log(user)
         return replies.map(reply => (
             <ReplyElem key={reply.id}>
                 <PostContent>
@@ -210,10 +215,12 @@ const ForumPage: React.FC = () => {
                             <Button onClick={cancelEdit}>Cancel</Button>
                         </>
                     ) : (
-                        <>
-                            <Button onClick={() => startEdit(reply.id, reply.content)}>Edit</Button>
-                            <Button onClick={() => handleReply(postId, reply.id)}>Reply</Button>
-                        </>
+                        isUserAuthor(reply.author) && (
+                            <>
+                                <Button onClick={() => startEdit(reply.id, reply.content)}>Edit</Button>
+                                <Button onClick={() => handleReply(postId, reply.id)}>Reply</Button>
+                            </>
+                        )
                     )}
                 </ButtonContainer>
             </ReplyElem>
@@ -230,7 +237,9 @@ const ForumPage: React.FC = () => {
                                 <Title>{post.title}</Title>
                                 <Content>{post.content}</Content>
                             </TextPost>
-                            <ReplyButton onClick={() => handleReply(post.id)}>Reply</ReplyButton>
+                            {isUserAuthor(post.author) && (
+                                <ReplyButton onClick={() => handleReply(post.id)}>Reply</ReplyButton>
+                            )}
                         </ContentArea>
                         {post.replies && post.replies.length > 0 && renderReplies(post.replies, post.id)}
                     </PostContainer>
