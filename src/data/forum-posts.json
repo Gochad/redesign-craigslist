@@ -1,12 +1,13 @@
 [
     {
         "id": 0,
+        "author": "gosiunia",
         "title": "Welcome to the Forum!",
         "content": "Feel free to post your questions and share information here.",
         "replies": [
             {
                 "id": 100,
-                "author": "JaneDoe",
+                "author": "agnieszka",
                 "content": "Thanks for setting this up! Looking forward to participating.",
                 "replies": []
             }
@@ -14,17 +15,18 @@
     },
     {
         "id": 200,
+        "author": "gosiunia",
         "title": "Looking for Recommendations",
         "content": "Can anyone recommend a good plumber in the area?",
         "replies": [
             {
                 "id": 300,
-                "author": "JohnSmith",
+                "author": "agnieszka",
                 "content": "I've used Awesome Plumbing before and they were great!",
                 "replies": [
                     {
                         "id": 400,
-                        "author": "JaneDoe",
+                        "author": "gosiunia",
                         "content": "Do you have their contact info?",
                         "replies": []
                     },
@@ -40,17 +42,18 @@
     },
     {
         "id": 600,
+        "author": "gosiunia",
         "title": "Tech Gadgets Discussion",
         "content": "Let's talk about the latest in tech. Anyone tried the new XPhone?",
         "replies": [
             {
                 "id": 700,
-                "author": "TechGeek42",
+                "author": "agnieszka",
                 "content": "Yes, I just got one last week. It's fast, but battery life is a bit disappointing.",
                 "replies": [
                     {
                         "id": 800,
-                        "author": "GadgetFan",
+                        "author": "gosiunia",
                         "content": "That's interesting. How does the camera compare to last year's model?",
                         "replies": []
                     }
@@ -71,12 +74,12 @@
         "replies": [
             {
                 "id": 1100,
-                "author": "MikeC",
+                "author": "agnieszka",
                 "content": "I'll be there! Bringing my famous apple pie.",
                 "replies": [
                     {
                         "id": 1200,
-                        "author": "ElaineB",
+                        "author": "gosiunia",
                         "content": "Yum, can't wait to try it!",
                         "replies": []
                     }
@@ -91,12 +94,12 @@
         "replies": [
             {
                 "id": 1400,
-                "author": "CatLover",
+                "author": "gosiunia",
                 "content": "Always keep fresh water available. Hydration is super important!",
                 "replies": [
                     {
                         "id": 1500,
-                        "author": "DogDad",
+                        "author": "agnieszka",
                         "content": "Great advice! For dogs, regular grooming helps a lot with shedding.",
                         "replies": []
                     }
