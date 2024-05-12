@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 import PageLayout from "../PageLayout";
 import styled from "styled-components";
 import { Section } from "./styles";
-import { colors } from "../../config/colors";
+import { colors } from "../../styles/colors";
 
 const Label = styled.label`
   display: block;

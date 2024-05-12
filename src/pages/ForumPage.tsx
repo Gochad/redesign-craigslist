@@ -5,7 +5,7 @@ import styled from "styled-components";
 import forumPosts from "../data/forum-posts.json";
 import { Reply } from "../components/types";
 import { Section } from "./HeaderLinks/styles";
-import { colors } from "../config/colors";
+import { colors } from "../styles/colors";
 
 const PostContainer = styled.div`
   display: flex;

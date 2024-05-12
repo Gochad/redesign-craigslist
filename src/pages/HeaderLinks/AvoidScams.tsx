@@ -2,7 +2,7 @@ import React from "react";
 import PageLayout from "../PageLayout";
 import styled from "styled-components";
 import { Section } from "./styles";
-import { colors } from "../../config/colors";
+import { colors } from "../../styles/colors";
 
 const Title = styled.h1`
   color: ${colors.fstDarkViolet};

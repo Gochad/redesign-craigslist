@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { colors } from "../config/colors";
+import { colors } from "../styles/colors";
 
 const AccordionSection = styled.div`
   width: 100%;

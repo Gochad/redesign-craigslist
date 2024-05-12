@@ -2,7 +2,7 @@ import React, { useState, useContext, FC } from "react";
 import styled from "styled-components";
 import PageLayout from "./PageLayout";
 import { UserContext } from "../context/UserContext";
-import { colors } from "../config/colors";
+import { colors } from "../styles/colors";
 
 const StyledInput = styled.input`
   padding: 10px;

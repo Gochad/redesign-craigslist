@@ -4,7 +4,7 @@ import { debounce } from "lodash";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSearch } from "../context/SearchContext";
-import { colors } from "../config/colors";
+import { colors } from "../styles/colors";
 
 const Container = styled.div`
   display: flex;

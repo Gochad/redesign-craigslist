@@ -6,7 +6,7 @@ import { faUser, faCoffee } from "@fortawesome/free-solid-svg-icons";
 import LocationSwitcher from "./LocationSwitcher";
 import SearchBar from "../components/SearchBar";
 import { UserContext } from "../context/UserContext";
-import { colors } from "../config/colors";
+import { colors } from "../styles/colors";
 
 const HeaderContainer = styled.div`
   display: flex;
