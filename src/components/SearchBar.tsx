@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useRef, ChangeEvent } from 'react';
-import styled from 'styled-components';
-import { debounce } from 'lodash';
-import { faSearch } from '@fortawesome/free-solid-svg-icons'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useSearch } from '../context/SearchContext';
+import React, { useState, useCallback, useRef, ChangeEvent } from "react";
+import styled from "styled-components";
+import { debounce } from "lodash";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSearch } from "../context/SearchContext";
+import { colors } from "../config/colors";
 
 const Container = styled.div`
   display: flex;
@@ -13,28 +14,28 @@ const Container = styled.div`
   margin: 20px;
 `;
 
-const SearchInput = styled.input<{ isOpen?: boolean; }>`
+const SearchInput = styled.input<{ isOpen?: boolean }>`
   position: absolute;
-  left: ${props => props.isOpen ? '35px' : '0'};
-  width: ${props => props.isOpen ? 'calc(100% - 80px)' : '0'};
+  left: ${(props) => (props.isOpen ? "35px" : "0")};
+  width: ${(props) => (props.isOpen ? "calc(100% - 80px)" : "0")};
   transition: width 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
   height: 15px;
-  padding: ${props => props.isOpen ? '12px 20px' : '12px 0px'};
+  padding: ${(props) => (props.isOpen ? "12px 20px" : "12px 0px")};
   border: 1px solid #ccc;
   border-radius: 5px;
-  opacity: ${props => props.isOpen ? '1' : '0'};
-  visibility: ${props => props.isOpen ? 'visible' : 'hidden'};
+  opacity: ${(props) => (props.isOpen ? "1" : "0")};
+  visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
   overflow: hidden;
 
   &:focus {
     outline: none;
-    border-color: #007BFF;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+    border-color: ${colors.lilac};
+    box-shadow: 0 0 8px rgba(156, 96, 161, 0.25);
   }
 `;
 
 const SearchIcon = styled.div`
-  color: #007BFF;
+  color: ${colors.lilac};
   font-size: 24px;
   cursor: pointer;
   position: absolute;
@@ -67,7 +68,6 @@ const SearchBar = () => {
       }, 300);
     }
   };
-  
 
   return (
     <Container>

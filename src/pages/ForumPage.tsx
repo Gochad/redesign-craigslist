@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../context/UserContext';
-import PageLayout from './PageLayout';
-import styled from 'styled-components';
-import forumPosts from '../data/forum-posts.json';
-import { Reply } from '../components/types';
-import { Section } from './HeaderLinks/styles';
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../context/UserContext";
+import PageLayout from "./PageLayout";
+import styled from "styled-components";
+import forumPosts from "../data/forum-posts.json";
+import { Reply } from "../components/types";
+import { Section } from "./HeaderLinks/styles";
+import { colors } from "../config/colors";
 
 const PostContainer = styled.div`
   display: flex;
@@ -15,8 +16,8 @@ const PostContainer = styled.div`
   margin: 20px 0;
   padding: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  border: 2px solid #007bff;
-  border-bottom: 4px solid #007bff;
+  border: 2px solid ${colors.lilac};
+  border-bottom: 4px solid ${colors.lilac};
   transition: box-shadow 0.3s ease, transform 0.2s ease;
 
   &:hover {
@@ -30,7 +31,7 @@ const ReplyElem = styled.div`
   background: #f9f9f9;
   margin-top: 15px;
   padding: 15px;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid ${colors.lilac};
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 `;
@@ -52,7 +53,7 @@ const ButtonContainer = styled.div`
 
 const Button = styled.button`
   padding: 10px 15px;
-  background-color: #007bff;
+  background-color: ${colors.fstDarkViolet};
   color: white;
   border: none;
   border-radius: 5px;
@@ -61,7 +62,7 @@ const Button = styled.button`
   height: 35px;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: ${colors.sndDarkViolet};
     transform: translateY(-2px);
   }
 `;
@@ -78,18 +79,17 @@ const Input = styled.textarea`
   border: 2px solid #ccc;
   border-radius: 4px;
   &:focus {
-    border-color: #007bff;
+    border-color: ${colors.lilac};
     outline: none;
   }
 `;
 
 const Title = styled.h3`
   margin: 0 0 10px 0;
-  color: #007bff;
+  color: ${colors.fstDarkViolet};
   font-size: 24px;
   font-weight: bold;
 `;
-
 
 const PostContent = styled.div`
   flex: 1;
@@ -108,143 +108,170 @@ const TextPost = styled.div`
 
 const PostP = styled.p`
   margin-bottom: 30px;
-`
+`;
 
 const ForumPage: React.FC = () => {
-    const [posts, setPosts] = useState<Reply[]>(() => {
-        const localData = localStorage.getItem('forumPosts');
-        return localData ? JSON.parse(localData) : forumPosts;
+  const [posts, setPosts] = useState<Reply[]>(() => {
+    const localData = localStorage.getItem("forumPosts");
+    return localData ? JSON.parse(localData) : forumPosts;
+  });
+  const { user } = useContext(UserContext);
+  const [editId, setEditId] = useState<number | null>(null);
+  const [editText, setEditText] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("forumPosts", JSON.stringify(posts));
+  }, [posts]);
+
+  const isUserAuthor = (authorName: string) => user && user.name === authorName;
+
+  const handleReply = (
+    postId: number,
+    replyId: number | null = null,
+    replyContent: string = ""
+  ) => {
+    const updateReplies = (replies: Reply[]): Reply[] => {
+      return replies.map((reply) => {
+        if (reply.id === replyId) {
+          return {
+            ...reply,
+            replies: addReply(reply.replies, replyId, replyContent),
+          };
+        } else {
+          return { ...reply, replies: updateReplies(reply.replies) };
+        }
+      });
+    };
+
+    const newPosts = posts.map((post) => {
+      if (post.id === postId) {
+        if (!replyId) {
+          return {
+            ...post,
+            replies: addReply(post.replies, postId, replyContent),
+          };
+        } else {
+          return { ...post, replies: updateReplies(post.replies) };
+        }
+      }
+      return post;
     });
-    const { user } = useContext(UserContext);
-    const [editId, setEditId] = useState<number | null>(null);
-    const [editText, setEditText] = useState('');
+    setPosts(newPosts);
+  };
 
-    useEffect(() => {
-        localStorage.setItem('forumPosts', JSON.stringify(posts));
-    }, [posts]);
+  const addReply = (
+    replies: Reply[],
+    replyId: number,
+    replyContent: string
+  ): Reply[] => {
+    const newReplyId = Math.max(0, ...replies.map((r) => r.id)) + 1;
+    const newReply = {
+      id: newReplyId,
+      title: "New Reply",
+      author: "Anonymous",
+      content: replyContent,
+      replies: [],
+    };
+    setEditId(newReplyId);
+    setEditText("");
+    return [...replies, newReply];
+  };
 
-    const isUserAuthor = (authorName: string) => user && user.name === authorName;
+  const startEdit = (replyId: number, currentText: string) => {
+    setEditId(replyId);
+    setEditText(currentText);
+  };
 
-    const handleReply = (postId: number, replyId: number | null = null, replyContent: string = '') => {
-        const updateReplies = (replies: Reply[]): Reply[] => {
-            return replies.map(reply => {
-                if (reply.id === replyId) {
-                    return { ...reply, replies: addReply(reply.replies, replyId, replyContent) };
-                } else {
-                    return { ...reply, replies: updateReplies(reply.replies) };
-                }
-            });
-        };
+  const cancelEdit = () => {
+    setEditId(null);
+    setEditText("");
+  };
 
-        const newPosts = posts.map(post => {
-            if (post.id === postId) {
-                if (!replyId) {
-                    return { ...post, replies: addReply(post.replies, postId, replyContent) };
-                } else { 
-                    return { ...post, replies: updateReplies(post.replies) };
-                }
-            }
-            return post;
-        });
-        setPosts(newPosts);
+  const handleEdit = (replyId: number) => {
+    const updateReplies = (replies: Reply[]): Reply[] => {
+      return replies.map((reply) => {
+        if (reply.id === replyId) {
+          return { ...reply, content: editText };
+        } else {
+          return { ...reply, replies: updateReplies(reply.replies) };
+        }
+      });
     };
 
-    const addReply = (replies: Reply[], replyId: number, replyContent: string): Reply[] => {
-        const newReplyId = Math.max(0, ...replies.map(r => r.id)) + 1;
-        const newReply = {
-            id: newReplyId,
-            title: "New Reply",
-            author: "Anonymous",
-            content: replyContent,
-            replies: []
-        };
-        setEditId(newReplyId);
-        setEditText('');
-        return [...replies, newReply];
-    };
+    const newPosts = posts.map((post) => {
+      return { ...post, replies: updateReplies(post.replies) };
+    });
+    setPosts(newPosts);
+    setEditId(null);
+    setEditText("");
+  };
 
-    const startEdit = (replyId: number, currentText: string) => {
-        setEditId(replyId);
-        setEditText(currentText);
-    };
+  const renderReplies = (replies: Reply[], postId: number): JSX.Element[] => {
+    return replies.map((reply) => (
+      <ReplyElem key={reply.id}>
+        <PostContent>
+          {editId === reply.id ? (
+            <Input
+              value={editText}
+              onChange={(e) => setEditText(e.target.value)}
+              autoFocus
+            />
+          ) : (
+            <PostP>
+              <strong>{reply.author}:</strong> {reply.content}
+            </PostP>
+          )}
+          {reply.replies &&
+            reply.replies.length > 0 &&
+            renderReplies(reply.replies, reply.id)}
+        </PostContent>
+        <ButtonContainer>
+          {editId === reply.id ? (
+            <>
+              <Button onClick={() => handleEdit(reply.id)}>Save</Button>
+              <Button onClick={cancelEdit}>Cancel</Button>
+            </>
+          ) : (
+            <>
+              {isUserAuthor(reply.author) && (
+                <Button onClick={() => startEdit(reply.id, reply.content)}>
+                  Edit
+                </Button>
+              )}
+              <Button onClick={() => handleReply(postId, reply.id)}>
+                Reply
+              </Button>
+            </>
+          )}
+        </ButtonContainer>
+      </ReplyElem>
+    ));
+  };
 
-    const cancelEdit = () => {
-        setEditId(null);
-        setEditText('');
-    };
-
-    const handleEdit = (replyId: number) => {
-        const updateReplies = (replies: Reply[]): Reply[] => {
-            return replies.map(reply => {
-                if (reply.id === replyId) {
-                    return { ...reply, content: editText };
-                } else {
-                    return { ...reply, replies: updateReplies(reply.replies) };
-                }
-            });
-        };
-
-        const newPosts = posts.map(post => {
-            return { ...post, replies: updateReplies(post.replies) };
-        });
-        setPosts(newPosts);
-        setEditId(null);
-        setEditText('');
-    };
-
-    const renderReplies = (replies: Reply[], postId: number): JSX.Element[] => {
-        return replies.map(reply => (
-            <ReplyElem key={reply.id}>
-                <PostContent>
-                    {editId === reply.id ? (
-                        <Input
-                            value={editText}
-                            onChange={e => setEditText(e.target.value)}
-                            autoFocus
-                        />
-                    ) : (
-                        <PostP><strong>{reply.author}:</strong> {reply.content}</PostP>
-                    )}
-                    {reply.replies && reply.replies.length > 0 && renderReplies(reply.replies, reply.id)}
-                </PostContent>
-                <ButtonContainer>
-                    {editId === reply.id ? (
-                        <>
-                            <Button onClick={() => handleEdit(reply.id)}>Save</Button>
-                            <Button onClick={cancelEdit}>Cancel</Button>
-                        </>
-                    ) : (
-                            <>
-                                {isUserAuthor(reply.author) && (<Button onClick={() => startEdit(reply.id, reply.content)}>Edit</Button>)}
-                                <Button onClick={() => handleReply(postId, reply.id)}>Reply</Button>
-                            </>
-                        )
-                    }
-                </ButtonContainer>
-            </ReplyElem>
-        ));
-    };
-
-    return (
-        <PageLayout>
-            <Section>
-                {posts.map(post => (
-                    <PostContainer key={post.id}>
-                        <ContentArea>
-                            <TextPost>
-                                <Title>{post.title}</Title>
-                                <Content>{post.content}</Content>
-                            </TextPost>
-                            {isUserAuthor(post.author) && (
-                                <ReplyButton onClick={() => handleReply(post.id)}>Reply</ReplyButton>
-                            )}
-                        </ContentArea>
-                        {post.replies && post.replies.length > 0 && renderReplies(post.replies, post.id)}
-                    </PostContainer>
-                ))}
-            </Section>
-        </PageLayout>
-    );
+  return (
+    <PageLayout>
+      <Section>
+        {posts.map((post) => (
+          <PostContainer key={post.id}>
+            <ContentArea>
+              <TextPost>
+                <Title>{post.title}</Title>
+                <Content>{post.content}</Content>
+              </TextPost>
+              {isUserAuthor(post.author) && (
+                <ReplyButton onClick={() => handleReply(post.id)}>
+                  Reply
+                </ReplyButton>
+              )}
+            </ContentArea>
+            {post.replies &&
+              post.replies.length > 0 &&
+              renderReplies(post.replies, post.id)}
+          </PostContainer>
+        ))}
+      </Section>
+    </PageLayout>
+  );
 };
 
 export default ForumPage;

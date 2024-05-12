@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PageLayout from "./PageLayout";
 import { Item } from "../components/types";
+import { colors } from "../config/colors";
 
 const FormContainer = styled.div`
   display: flex;
@@ -33,7 +34,7 @@ const TextArea = styled.textarea`
 
 const Button = styled.button`
   padding: 12px 20px;
-  background-color: #007bff;
+  background-color: ${colors.fstDarkViolet};
   color: white;
   border: none;
   border-radius: 5px;
@@ -42,7 +43,7 @@ const Button = styled.button`
   align-self: center;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: ${colors.sndDarkViolet};
   }
 `;
 

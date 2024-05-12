@@ -1,11 +1,12 @@
-import React from 'react';
-import PageLayout from '../PageLayout';
-import styled from 'styled-components';
-import postingsData from '../../data/postings.json';
-import { Section } from './styles';
+import React from "react";
+import PageLayout from "../PageLayout";
+import styled from "styled-components";
+import postingsData from "../../data/postings.json";
+import { Section } from "./styles";
+import { colors } from "../../config/colors";
 
 const Title = styled.h1`
-  color: #007BFF;
+  color: ${colors.fstDarkViolet};
 `;
 
 const Disclaimer = styled.p`
@@ -27,13 +28,13 @@ const Posting = styled.div`
   width: 90%;
   padding: 15px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 `;
 
 const PostingTitle = styled.h3`
   margin: 0;
-  color: #007BFF;
+  color: ${colors.sndDarkViolet};
   font-size: 18px;
 `;
 
@@ -48,13 +49,17 @@ const BestOfCraigslistPage: React.FC = () => {
       <Section>
         <Title>Best of Craigslist</Title>
         <Disclaimer>
-          Before perusing best-of-craigslist postings below please note: postings are nominated by craigslist readers, and are not necessarily endorsed by craigslist staff.
+          Before perusing best-of-craigslist postings below please note:
+          postings are nominated by craigslist readers, and are not necessarily
+          endorsed by craigslist staff.
         </Disclaimer>
         <PostingContainer>
           {postingsData.map((posting, index) => (
             <Posting key={index}>
               <PostingTitle>{posting.title}</PostingTitle>
-              <PostingDetails>{posting.date} - {posting.category} - {posting.area}</PostingDetails>
+              <PostingDetails>
+                {posting.date} - {posting.category} - {posting.area}
+              </PostingDetails>
             </Posting>
           ))}
         </PostingContainer>
@@ -64,4 +69,3 @@ const BestOfCraigslistPage: React.FC = () => {
 };
 
 export default BestOfCraigslistPage;
-
