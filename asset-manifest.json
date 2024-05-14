@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/redesign-craigslist/static/css/main.e6c13ad2.css",
-    "main.js": "/redesign-craigslist/static/js/main.ebdc26ec.js",
+    "main.js": "/redesign-craigslist/static/js/main.bcf0a2d6.js",
     "static/js/453.74b714d0.chunk.js": "/redesign-craigslist/static/js/453.74b714d0.chunk.js",
     "static/media/logo.avif": "/redesign-craigslist/static/media/logo.e124a3c5140ee559190f.avif",
     "index.html": "/redesign-craigslist/index.html",
     "main.e6c13ad2.css.map": "/redesign-craigslist/static/css/main.e6c13ad2.css.map",
-    "main.ebdc26ec.js.map": "/redesign-craigslist/static/js/main.ebdc26ec.js.map",
+    "main.bcf0a2d6.js.map": "/redesign-craigslist/static/js/main.bcf0a2d6.js.map",
     "453.74b714d0.chunk.js.map": "/redesign-craigslist/static/js/453.74b714d0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.ebdc26ec.js"
+    "static/js/main.bcf0a2d6.js"
   ]
 }
