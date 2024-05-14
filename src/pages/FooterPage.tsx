@@ -62,7 +62,7 @@ const Page = () => {
       <ContentContainer>
         <Title>{pageName ? pageName.charAt(0).toUpperCase() + pageName.slice(1) : 'Home'}</Title>
         <ContentText>{content}</ContentText>
-        <StyledImage src={image} alt="Dynamic Content" />
+        <StyledImage src={image} />
       </ContentContainer>
     </PageLayout>
   );
