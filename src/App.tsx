@@ -20,11 +20,13 @@ import FooterPage from './pages/FooterPage';
 import UserPage from './pages/UserPage';
 import ForumPage from './pages/ForumPage';
 
+const { homepage } = require('../package.json');
+
 function App() {
   return (
     <UserProvider>
       <SearchProvider>
-        <Router>
+        <Router basename={homepage}>
             <GlobalStyles />
             <Routes>
                 <Route path="" element={<HomePage />} />
