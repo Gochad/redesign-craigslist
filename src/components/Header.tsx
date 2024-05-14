@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCoffee } from "@fortawesome/free-solid-svg-icons";
 import LocationSwitcher from "./LocationSwitcher";
 import SearchBar from "../components/SearchBar";
-import { UserContext } from "../context/UserContext";
 import { colors } from "../styles/colors";
+import { UserContext } from "../context/UserContext"; 
+import logo from './logo.avif';
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -66,7 +67,7 @@ const Header = () => {
     <HeaderContainer>
       <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
         <Title>
-          <Logo src="/logo.avif" alt="Craigslist Logo" />
+          <Logo src={logo}/>
           Craigslist Redesign
         </Title>
       </Link>

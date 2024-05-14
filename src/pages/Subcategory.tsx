@@ -93,9 +93,9 @@ const Subcategory = () => {
 
   useEffect(() => {
     const filtered = items.filter(item =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.area.toLowerCase().includes(searchTerm.toLowerCase())
+      item.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.area?.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFiltered(filtered);
   }, [searchTerm, items]);
