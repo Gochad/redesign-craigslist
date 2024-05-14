@@ -27,7 +27,7 @@ function App() {
         <Router>
             <GlobalStyles />
             <Routes>
-                <Route path="/redesign-craigslist" element={<HomePage />} />
+                <Route path="/" element={<HomePage />} />
                 <Route path="/subcategories" element={<Subcategory/>}></Route>
                 <Route path="/create" element={<CreatePost/>}></Route>
                 <Route path="/user" element={<UserPage/>} />

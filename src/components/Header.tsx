@@ -65,7 +65,7 @@ const Header = () => {
   const { user } = useContext(UserContext);
   return (
     <HeaderContainer>
-      <Link to="/redesign-craigslist" style={{ textDecoration: "none", color: "inherit" }}>
+      <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
         <Title>
           <Logo src={logo}/>
           Craigslist Redesign
