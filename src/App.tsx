@@ -24,7 +24,7 @@ function App() {
   return (
     <UserProvider>
       <SearchProvider>
-        <Router>
+        <Router basename={"/"}>
             <GlobalStyles />
             <Routes>
                 <Route path="/" element={<HomePage />} />
