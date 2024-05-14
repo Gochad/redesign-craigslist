@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { colors } from "../styles/colors";
 
 const AccordionSection = styled.div`
   width: 100%;
@@ -11,7 +12,7 @@ const Question = styled.div`
   cursor: pointer;
   padding: 10px;
   font-weight: bold;
-  color: #007BFF;
+  color: ${colors.sndDarkViolet};
 `;
 
 const Answer = styled.div`
@@ -35,7 +36,9 @@ const Accordion: React.FC<AccordionProps> = ({ question, answer }) => {
   return (
     <AccordionSection>
       <Question onClick={toggle}>{question}</Question>
-      {isOpen && <Answer style={{ display: isOpen ? 'block' : 'none' }}>{answer}</Answer>}
+      {isOpen && (
+        <Answer style={{ display: isOpen ? "block" : "none" }}>{answer}</Answer>
+      )}
     </AccordionSection>
   );
 };

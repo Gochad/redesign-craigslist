@@ -1,11 +1,12 @@
-import React from 'react';
-import PageLayout from '../PageLayout';
-import styled from 'styled-components';
-import newsData from '../../data/news.json';
-import { Section } from './styles';
+import React from "react";
+import PageLayout from "../PageLayout";
+import styled from "styled-components";
+import newsData from "../../data/news.json";
+import { Section } from "./styles";
+import { colors } from "../../styles/colors";
 
 const Title = styled.h1`
-  color: #007BFF;
+  color: ${colors.fstDarkViolet};
 `;
 
 const NewsItem = styled.div`
@@ -13,12 +14,12 @@ const NewsItem = styled.div`
   margin-top: 10px;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   width: 100%;
 `;
 
 const NewsTitle = styled.h3`
-  color: #0056b3;
+  color: ${colors.sndDarkViolet};
 `;
 
 const NewsDate = styled.p`

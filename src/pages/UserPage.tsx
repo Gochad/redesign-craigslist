@@ -1,7 +1,8 @@
-import React, { useState, useContext, FC } from 'react';
-import styled from 'styled-components';
-import PageLayout from './PageLayout';
-import { UserContext } from '../context/UserContext';
+import React, { useState, useContext, FC } from "react";
+import styled from "styled-components";
+import PageLayout from "./PageLayout";
+import { UserContext } from "../context/UserContext";
+import { colors } from "../styles/colors";
 
 const StyledInput = styled.input`
   padding: 10px;
@@ -15,7 +16,7 @@ const StyledInput = styled.input`
 `;
 
 const StyledButton = styled.button`
-  background-color: #007bff;
+  background-color: ${colors.fstDarkViolet};
   color: white;
   padding: 12px 20px;
   border: none;
@@ -24,7 +25,7 @@ const StyledButton = styled.button`
   margin-top: 20px;
   width: 85%;
   &:hover {
-    background-color: #0056b3;
+    background-color: ${colors.sndDarkViolet};
   }
 `;
 
@@ -50,10 +51,10 @@ const UserInfo = styled.div`
 
 const UserSection: FC = () => {
   const { user, login, register, logout } = useContext(UserContext);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [mode, setMode] = useState<'login' | 'register'>('login');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [mode, setMode] = useState<"login" | "register">("login");
 
   if (user) {
     return (
@@ -70,36 +71,42 @@ const UserSection: FC = () => {
 
   return (
     <StyledContainer>
-      <h1>{mode === 'login' ? 'Login' : 'Register'}</h1>
+      <h1>{mode === "login" ? "Login" : "Register"}</h1>
       <StyledInput
         type="text"
         placeholder="Username"
         value={username}
-        onChange={e => setUsername(e.target.value)}
+        onChange={(e) => setUsername(e.target.value)}
       />
       <StyledInput
         type="password"
         placeholder="Password"
         value={password}
-        onChange={e => setPassword(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
       />
-      {mode === 'register' && (
+      {mode === "register" && (
         <StyledInput
           type="email"
           placeholder="Email"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
       )}
-      {mode === 'login' ? (
-        <StyledButton onClick={() => login(username, password)}>Login</StyledButton>
+      {mode === "login" ? (
+        <StyledButton onClick={() => login(username, password)}>
+          Login
+        </StyledButton>
       ) : (
-        <StyledButton onClick={() => register(username, password, email)}>Register</StyledButton>
+        <StyledButton onClick={() => register(username, password, email)}>
+          Register
+        </StyledButton>
       )}
       <p>
-        {mode === 'login' ? 'Need an account?' : 'Already have an account?'}
-        <StyledButton onClick={() => setMode(mode === 'login' ? 'register' : 'login')}>
-          {mode === 'login' ? 'Register' : 'Login'}
+        {mode === "login" ? "Need an account?" : "Already have an account?"}
+        <StyledButton
+          onClick={() => setMode(mode === "login" ? "register" : "login")}
+        >
+          {mode === "login" ? "Register" : "Login"}
         </StyledButton>
       </p>
     </StyledContainer>

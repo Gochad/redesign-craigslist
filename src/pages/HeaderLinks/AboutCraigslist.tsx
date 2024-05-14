@@ -1,14 +1,15 @@
-import React from 'react';
-import PageLayout from '../PageLayout';
-import styled from 'styled-components';
-import { Section } from './styles';
+import React from "react";
+import PageLayout from "../PageLayout";
+import styled from "styled-components";
+import { Section } from "./styles";
+import { colors } from "../../styles/colors";
 
 const Title = styled.h1`
-  color: #007BFF;
+  color: ${colors.fstDarkViolet};
 `;
 
 const Subtitle = styled.h2`
-  color: #0056b3;
+  color: ${colors.sndDarkViolet};
 `;
 
 const Content = styled.p`
@@ -34,7 +35,8 @@ const AboutCraigslistPage: React.FC = () => {
       <Section>
         <Title>About Craigslist</Title>
         <Content>
-          Craigslist is a dedicated classifieds service that helps users find housing, jobs, items for sale, and much more.
+          Craigslist is a dedicated classifieds service that helps users find
+          housing, jobs, items for sale, and much more.
         </Content>
 
         <Subtitle>Using Craigslist</Subtitle>
@@ -57,12 +59,16 @@ const AboutCraigslistPage: React.FC = () => {
           <ListItem>Privacy Policy - user privacy info</ListItem>
           <ListItem>Best of craigslist - voted by 'readers like you'</ListItem>
           <ListItem>Contact Form - send us a note</ListItem>
-          <ListItem>24 Hours on craigslist - award-winning documentary</ListItem>
+          <ListItem>
+            24 Hours on craigslist - award-winning documentary
+          </ListItem>
           <ListItem>CL Feedback Forum - suggestion box</ListItem>
           <ListItem>Charitable Fund - grants for 501(c)3 orgs</ListItem>
           <ListItem>CL Help Desk Forum - tips from experienced users</ListItem>
           <ListItem>Open Source - it gets better</ListItem>
-          <ListItem>Avoiding Scams & Fraud - rule #1 is "deal locally"</ListItem>
+          <ListItem>
+            Avoiding Scams & Fraud - rule #1 is "deal locally"
+          </ListItem>
           <ListItem>Security Kudos - responsible disclosures</ListItem>
         </List>
       </Section>

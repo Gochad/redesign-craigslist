@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCoffee } from "@fortawesome/free-solid-svg-icons";
 import LocationSwitcher from "./LocationSwitcher";
 import SearchBar from "../components/SearchBar";
+import { colors } from "../styles/colors";
 import { UserContext } from "../context/UserContext"; 
 import logo from './logo.avif';
 
@@ -46,7 +47,7 @@ const ClickableElems = styled.div`
 const StyledLinkButton = styled.div`
   display: flex;
   align-items: center;
-  background-color: #39004d; //#007bff;
+  background-color: ${colors.fstDarkViolet}; //#39004d; //#007bff;
   color: white;
   padding: 10px 15px;
   border-radius: 5px;
@@ -56,7 +57,7 @@ const StyledLinkButton = styled.div`
   text-decoration: none;
 
   &:hover {
-    background-color: #5c3b69; //#0056b3;
+    background-color: ${colors.sndDarkViolet}; #5c3b69; //#0056b3;
   }
 `;
 
@@ -75,10 +76,14 @@ const Header = () => {
           <StyledLinkButton>create post</StyledLinkButton>
         </Link>
         <Link to="/user" style={{ textDecoration: "none" }}>
-        <StyledLinkButton>
-          <FontAwesomeIcon icon={faUser} size="lg" style={{ marginRight: "5px" }} />
-          {user ? `${user.name}` : "user"}
-        </StyledLinkButton>
+          <StyledLinkButton>
+            <FontAwesomeIcon
+              icon={faUser}
+              size="lg"
+              style={{ marginRight: "5px" }}
+            />
+            {user ? `${user.name}` : "user"}
+          </StyledLinkButton>
         </Link>
         <LocationSwitcher />
         <Link to="/forum" style={{ textDecoration: "none" }}>

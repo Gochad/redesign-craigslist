@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { colors } from "../styles/colors";
 
 const Container = styled.div`
   margin-top: 50px;
@@ -51,7 +52,7 @@ const StyledLink = styled.a`
 const Button = styled.button`
   padding: 5px 5px;
   margin: 0 5px;
-  background-color: #af43c6; //#4285f4;
+  background-color: ${colors.intenseLilac}; //#4285f4;
   color: white;
   border: none;
   border-radius: 5px;
@@ -59,7 +60,7 @@ const Button = styled.button`
   font-size: 1rem;
 
   &:hover {
-    background-color: #cc95d8; //#357ae8;
+    background-color: ${colors.lightLilac}; //#357ae8;
   }
 
   &:focus {
@@ -67,7 +68,7 @@ const Button = styled.button`
   }
 
   &:active {
-    background-color: #ba9dc0; //#285a8e;
+    background-color: ${colors.pastelLilac}; //#285a8e;
   }
 `;
 
