@@ -7,7 +7,7 @@ import LocationSwitcher from "./LocationSwitcher";
 import SearchBar from "../components/SearchBar";
 import { colors } from "../styles/colors";
 import { UserContext } from "../context/UserContext"; 
-import logo from './logo.avif';
+import logo from '../images/logo.avif';
 
 const HeaderContainer = styled.div`
   display: flex;
