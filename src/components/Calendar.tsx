@@ -4,16 +4,17 @@ import { colors } from "../styles/colors";
 
 const Container = styled.div`
   margin-top: 50px;
+
   table {
     width: 100%;
     border-collapse: collapse;
   }
 
-  th,
-  td {
+  th, td {
     border: 1px solid #ccc;
     text-align: center;
     min-width: 32px;
+    padding: 10px;
   }
 
   .emptyDay {
@@ -23,14 +24,13 @@ const Container = styled.div`
   .header-controls {
     display: flex;
     align-items: center;
-    justify-content: center;
-    min-width: 260px;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
 
   .header-controls h2 {
     margin: 0;
-    font-size: 1.25rem;
-    width: 250px;
+    font-size: 1.5rem;
     text-align: center;
   }
 `;
@@ -50,9 +50,9 @@ const StyledLink = styled.a`
 `;
 
 const Button = styled.button`
-  padding: 5px 5px;
+  padding: 10px 15px;
   margin: 0 5px;
-  background-color: ${colors.intenseLilac}; //#4285f4;
+  background-color: ${colors.intenseLilac};
   color: white;
   border: none;
   border-radius: 5px;
@@ -60,7 +60,7 @@ const Button = styled.button`
   font-size: 1rem;
 
   &:hover {
-    background-color: ${colors.lightLilac}; //#357ae8;
+    background-color: ${colors.lightLilac};
   }
 
   &:focus {
@@ -68,48 +68,34 @@ const Button = styled.button`
   }
 
   &:active {
-    background-color: ${colors.pastelLilac}; //#285a8e;
+    background-color: ${colors.pastelLilac};
   }
 `;
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  const firstDayOfMonth = () =>
-    new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-  const lastDayOfMonth = () =>
-    new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+  const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+  const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
 
   const getMonthYearString = (date: Date) => {
     const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
     ];
     return `${months[date.getMonth()]} ${date.getFullYear()}`;
   };
 
   const daysInMonth = () => {
-    const firstDay = firstDayOfMonth().getDay();
-    const lastDate = lastDayOfMonth().getDate();
+    const firstDay = firstDayOfMonth.getDay();
+    const lastDate = lastDayOfMonth.getDate();
 
     const days = Array.from({ length: firstDay }, (_, index) => (
-      <td key={`empty-start-${index}`}>&nbsp;</td>
+      <td key={`empty-start-${index}`} className="emptyDay">&nbsp;</td>
     )).concat(
       Array.from({ length: lastDate }, (_, index) => {
         const day = index + 1;
-        const dateStr = `${currentDate.getFullYear()}-${String(
-          currentDate.getMonth() + 1
-        ).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+        const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
         return (
           <td key={day}>
             <StyledLink href={`/date/${dateStr}`}>{day}</StyledLink>
@@ -118,49 +104,34 @@ const Calendar = () => {
       })
     );
 
-    const totalDays = days.length;
-    const extraDays = totalDays % 7 ? 7 - (totalDays % 7) : 0;
-
+    const extraDays = (7 - (days.length % 7)) % 7;
     const completeDays = days.concat(
       Array.from({ length: extraDays }, (_, index) => (
-        <td key={`empty-end-${index}`}>&nbsp;</td>
+        <td key={`empty-end-${index}`} className="emptyDay">&nbsp;</td>
       ))
     );
 
-    const weeks = Array.from(
-      { length: Math.ceil(completeDays.length / 7) },
-      (_, index) => (
-        <tr key={`week-${index}`}>
-          {completeDays.slice(index * 7, (index + 1) * 7)}
-        </tr>
-      )
-    );
+    return Array.from({ length: completeDays.length / 7 }, (_, index) => (
+      <tr key={`week-${index}`}>
+        {completeDays.slice(index * 7, (index + 1) * 7)}
+      </tr>
+    ));
+  };
 
-    return weeks;
+  const handlePrevMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1));
+  };
+
+  const handleNextMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1));
   };
 
   return (
     <Container>
       <div className="header-controls">
-        <Button
-          onClick={() =>
-            setCurrentDate(
-              new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
-            )
-          }
-        >
-          Prev
-        </Button>
+        <Button onClick={handlePrevMonth}>Prev</Button>
         <h2>{getMonthYearString(currentDate)}</h2>
-        <Button
-          onClick={() =>
-            setCurrentDate(
-              new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
-            )
-          }
-        >
-          Next
-        </Button>
+        <Button onClick={handleNextMonth}>Next</Button>
       </div>
       <table>
         <thead>
