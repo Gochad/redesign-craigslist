@@ -1,16 +1,16 @@
 [
-    { "to": "/", "label": "homepage" },
-    { "to": "/contact", "label": "contact" },
-    { "to": "/help-faq-abuse-legal", "label": "help, faq, abuse, legal" },
-    { "to": "/avoid-scams", "label": "avoid scams & fraud" },
-    { "to": "/safety-tips", "label": "personal safety tips" },
-    { "to": "/craigslist-about", "label": "about craigslist" },
-    { "to": "/best-of-craigslist", "label": "best-of-craigslist" },
-    { "to": "/careers", "label": "craigslist is hiring" },
-    { "to": "/whats-new", "label": "what's new" },
-    { "to": "/system-status", "label": "system status" },
-    { "to": "/charity", "label": "craigslist charitable" },
-    { "to": "/philanthropies", "label": "craig newmark philanthropies" }
+    { "to": "/", "label": "Homepage" },
+    { "to": "/contact", "label": "Contact" },
+    { "to": "/help-faq-abuse-legal", "label": "Help, faq, abuse, legal" },
+    { "to": "/avoid-scams", "label": "Avoid scams & fraud" },
+    { "to": "/safety-tips", "label": "Personal safety tips" },
+    { "to": "/craigslist-about", "label": "About craigslist" },
+    { "to": "/best-of-craigslist", "label": "Best-of-craigslist" },
+    { "to": "/careers", "label": "Craigslist is hiring" },
+    { "to": "/whats-new", "label": "What's new" },
+    { "to": "/system-status", "label": "System status" },
+    { "to": "/charity", "label": "Craigslist charitable" },
+    { "to": "/philanthropies", "label": "Craig newmark philanthropies" }
 ]
 
   

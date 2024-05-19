@@ -72,7 +72,7 @@ const Header = () => {
       </Link>
       <ClickableElems>
         <Link to="/create" style={{ textDecoration: "none" }}>
-          <StyledLinkButton>create post</StyledLinkButton>
+          <StyledLinkButton>Create post</StyledLinkButton>
         </Link>
         <Link to="/user" style={{ textDecoration: "none" }}>
           <StyledLinkButton>
@@ -81,7 +81,7 @@ const Header = () => {
               size="lg"
               style={{ marginRight: "5px" }}
             />
-            {user ? `${user.name}` : "user"}
+            {user ? `${user.name}` : "User"}
           </StyledLinkButton>
         </Link>
         <LocationSwitcher />
@@ -92,7 +92,7 @@ const Header = () => {
               size="lg"
               style={{ marginRight: "5px" }}
             />
-            forum
+            Forum
           </StyledLinkButton>
         </Link>
         <SearchBar />
