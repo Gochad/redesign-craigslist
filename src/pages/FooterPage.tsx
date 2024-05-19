@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import PageLayout from './PageLayout';
 import footerData from '../data/footer.json';
+import logo from '../images/logo.avif';
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -51,7 +52,7 @@ const Page = () => {
   const getPageData = (pageName: string | undefined) => {
     return footerData.find(p => p.link === '/' + pageName) || {
       content: 'Welcome to Craigslist Redesigned!',
-      image: 'https://source.unsplash.com/random/800x600/?generic'
+      image: logo
     };
   };
 
@@ -62,7 +63,7 @@ const Page = () => {
       <ContentContainer>
         <Title>{pageName ? pageName.charAt(0).toUpperCase() + pageName.slice(1) : 'Home'}</Title>
         <ContentText>{content}</ContentText>
-        <StyledImage src={image} alt="Dynamic Content" />
+        <StyledImage src={image} />
       </ContentContainer>
     </PageLayout>
   );

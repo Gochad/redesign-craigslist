@@ -45,12 +45,12 @@ const CategoryCard = ({ category, style }: CategoryCardProps) => {
   return (
     <Card style={style}>
       <h3>
-        <StyledLink href={`/categories/`}>{category.name}</StyledLink>
+        <StyledLink href={`/categories`}>{category.name}</StyledLink>
       </h3>
       <SubcategoryList>
         {category.subcategories.map((subcategory) => (
           <SubcategoryItem key={subcategory}>
-            <StyledLink href={`/subcategories/`}>{subcategory}</StyledLink>
+            <StyledLink href={`/subcategories`}>{subcategory}</StyledLink>
           </SubcategoryItem>
         ))}
       </SubcategoryList>

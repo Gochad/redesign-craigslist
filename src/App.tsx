@@ -24,10 +24,10 @@ function App() {
   return (
     <UserProvider>
       <SearchProvider>
-        <Router>
+        <Router basename={"/"}>
             <GlobalStyles />
             <Routes>
-                <Route path="" element={<HomePage />} />
+                <Route path="/" element={<HomePage />} />
                 <Route path="/subcategories" element={<Subcategory/>}></Route>
                 <Route path="/create" element={<CreatePost/>}></Route>
                 <Route path="/user" element={<UserPage/>} />

@@ -61,14 +61,14 @@ const Detail = styled.p`
 `;
 
 interface FavoriteButtonProps {
-  favorited: boolean;
+  $favorited: boolean;
 }
 
 const FavoriteButton = styled.button<FavoriteButtonProps>`
   background: none;
   border: none;
   cursor: pointer;
-  color: ${(props) => (props.favorited ? "#ff4500" : "#ccc")};
+  color: ${(props) => (props.$favorited ? "#ff4500" : "#ccc")};
   font-size: 24px;
 `;
 
@@ -93,9 +93,9 @@ const Subcategory = () => {
 
   useEffect(() => {
     const filtered = items.filter(item =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.area.toLowerCase().includes(searchTerm.toLowerCase())
+      item.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.area?.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFiltered(filtered);
   }, [searchTerm, items]);
@@ -118,7 +118,7 @@ const Subcategory = () => {
             <ListItem key={item.title}>
               <FavoriteButton
                 onClick={() => toggleFavorite(item.title)}
-                favorited={favorites.includes(item.title)}
+                $favorited={favorites.includes(item.title)}
               >
                 {favorites.includes(item.title) ? "★" : "☆"}
               </FavoriteButton>
