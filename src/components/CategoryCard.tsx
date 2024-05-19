@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { CategoryData } from "./types";
+import { Link } from "react-router-dom";
 
 const Card = styled.div`
   padding: 20px;
@@ -27,7 +28,7 @@ const SubcategoryItem = styled.li`
   padding: 5px 0;
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   color: #000;
   text-decoration: none;
 
@@ -45,12 +46,12 @@ const CategoryCard = ({ category, style }: CategoryCardProps) => {
   return (
     <Card style={style}>
       <h3>
-        <StyledLink href={`/categories`}>{category.name}</StyledLink>
+        <StyledLink to='/categories'>{category.name}</StyledLink>
       </h3>
       <SubcategoryList>
         {category.subcategories.map((subcategory) => (
           <SubcategoryItem key={subcategory}>
-            <StyledLink href={`/subcategories`}>{subcategory}</StyledLink>
+            <StyledLink to='/subcategories'>{subcategory}</StyledLink>
           </SubcategoryItem>
         ))}
       </SubcategoryList>
