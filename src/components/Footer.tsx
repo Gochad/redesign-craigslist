@@ -27,9 +27,18 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   display: flex;
   align-items: center;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   &:hover {
-    text-decoration: underline;
+    background-color: #57007f;
+    color: #ffccff;
+  }
+
+  &:active {
+    background-color: #2c0036;
+    color: #ff99ff;
   }
 `;
 
@@ -48,4 +57,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
