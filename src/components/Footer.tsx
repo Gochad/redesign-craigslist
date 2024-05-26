@@ -39,7 +39,7 @@ const Footer = () => {
       {footerData.map((item, index) => (
         <Elem key={index}>
           <StyledLink to={item.link}>
-            {item.text}
+            {item.text.charAt(0).toUpperCase() + item.text.slice(1)}
           </StyledLink>
         </Elem>
       ))}
@@ -48,4 +48,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

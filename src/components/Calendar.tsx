@@ -13,7 +13,13 @@ const Container = styled.div`
   td {
     border: 1px solid #ccc;
     text-align: center;
+    color: #ccc;
+    font-size: 1.25rem;
     min-width: 32px;
+  }
+
+  td {
+    color: red;
   }
 
   .emptyDay {
@@ -24,11 +30,13 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 6px;
     min-width: 260px;
   }
 
   .header-controls h2 {
     margin: 0;
+    color: #ccc;
     font-size: 1.25rem;
     width: 250px;
     text-align: center;
