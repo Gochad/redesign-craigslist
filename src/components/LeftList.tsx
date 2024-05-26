@@ -23,7 +23,7 @@ const menuStyles = {
   bmMenuWrap: {
     position: "fixed",
     height: "100%",
-    width: "350px",
+    width: "370px",
   },
   bmMenu: {
     background: "#39004d",

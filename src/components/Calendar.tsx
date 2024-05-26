@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { colors } from "../styles/colors";
 
 const Container = styled.div`
-  margin-top: 50px;
+  margin: 20px auto;
+  width: 110%;
 
   table {
     width: 100%;
@@ -14,50 +15,57 @@ const Container = styled.div`
     border: 1px solid #ccc;
     text-align: center;
     min-width: 32px;
-    padding: 10px;
+    padding: 2px;
   }
 
   .emptyDay {
-    background-color: #f8f8f8;
+    background-color: ${colors.pastelLilac};
   }
 
   .header-controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .header-controls h2 {
     margin: 0;
     font-size: 1.5rem;
     text-align: center;
+    color: ${colors.intenseLilac};
   }
 `;
 
 const StyledLink = styled.a`
-  color: #fff;
+  color: ${colors.intenseLilac};
   text-decoration: none;
+  display: block;
+  padding: 5px;
+  border-radius: 3px;
+  transition: background-color 0.3s, color 0.3s;
 
   &:hover {
-    text-decoration: underline;
-    color: #0c66a1;
+    background-color: ${colors.intenseLilac};
+    color: #fff;
   }
 
   &:active {
-    color: #034678;
+    background-color: ${colors.pastelLilac};
+    color: #fff;
   }
 `;
 
 const Button = styled.button`
-  padding: 10px 15px;
+  padding: 8px 12px;
   margin: 0 5px;
   background-color: ${colors.intenseLilac};
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
 
   &:hover {
     background-color: ${colors.lightLilac};
