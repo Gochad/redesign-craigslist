@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { colors } from "../styles/colors";
 
 const Container = styled.div`
-  margin-top: 50px;
+  margin: 20px auto;
+  width: 110%;
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -16,6 +18,7 @@ const Container = styled.div`
     color: #ccc;
     font-size: 1.25rem;
     min-width: 32px;
+    padding: 2px;
   }
 
   td {
@@ -23,52 +26,56 @@ const Container = styled.div`
   }
 
   .emptyDay {
-    background-color: #f8f8f8;
+    background-color: ${colors.pastelLilac};
   }
 
   .header-controls {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 6px;
-    min-width: 260px;
+    justify-content: space-between;
+    margin-bottom: 10px;
   }
 
   .header-controls h2 {
     margin: 0;
-    color: #ccc;
-    font-size: 1.25rem;
-    width: 250px;
+    font-size: 1.5rem;
     text-align: center;
+    color: ${colors.intenseLilac};
   }
 `;
 
 const StyledLink = styled.a`
-  color: #fff;
+  color: ${colors.intenseLilac};
   text-decoration: none;
+  display: block;
+  padding: 5px;
+  border-radius: 3px;
+  transition: background-color 0.3s, color 0.3s;
 
   &:hover {
-    text-decoration: underline;
-    color: #0c66a1;
+    background-color: ${colors.intenseLilac};
+    color: #fff;
   }
 
   &:active {
-    color: #034678;
+    background-color: ${colors.pastelLilac};
+    color: #fff;
   }
 `;
 
 const Button = styled.button`
-  padding: 5px 5px;
+  padding: 8px 12px;
   margin: 0 5px;
-  background-color: ${colors.intenseLilac}; //#4285f4;
+  background-color: ${colors.intenseLilac};
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
 
   &:hover {
-    background-color: ${colors.lightLilac}; //#357ae8;
+    background-color: ${colors.lightLilac};
   }
 
   &:focus {
@@ -76,17 +83,23 @@ const Button = styled.button`
   }
 
   &:active {
-    background-color: ${colors.pastelLilac}; //#285a8e;
+    background-color: ${colors.pastelLilac};
   }
 `;
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  const firstDayOfMonth = () =>
-    new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-  const lastDayOfMonth = () =>
-    new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+  const firstDayOfMonth = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth(),
+    1
+  );
+  const lastDayOfMonth = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    0
+  );
 
   const getMonthYearString = (date: Date) => {
     const months = [
@@ -107,11 +120,13 @@ const Calendar = () => {
   };
 
   const daysInMonth = () => {
-    const firstDay = firstDayOfMonth().getDay();
-    const lastDate = lastDayOfMonth().getDate();
+    const firstDay = firstDayOfMonth.getDay();
+    const lastDate = lastDayOfMonth.getDate();
 
     const days = Array.from({ length: firstDay }, (_, index) => (
-      <td key={`empty-start-${index}`}>&nbsp;</td>
+      <td key={`empty-start-${index}`} className="emptyDay">
+        &nbsp;
+      </td>
     )).concat(
       Array.from({ length: lastDate }, (_, index) => {
         const day = index + 1;
@@ -126,49 +141,40 @@ const Calendar = () => {
       })
     );
 
-    const totalDays = days.length;
-    const extraDays = totalDays % 7 ? 7 - (totalDays % 7) : 0;
-
+    const extraDays = (7 - (days.length % 7)) % 7;
     const completeDays = days.concat(
       Array.from({ length: extraDays }, (_, index) => (
-        <td key={`empty-end-${index}`}>&nbsp;</td>
+        <td key={`empty-end-${index}`} className="emptyDay">
+          &nbsp;
+        </td>
       ))
     );
 
-    const weeks = Array.from(
-      { length: Math.ceil(completeDays.length / 7) },
-      (_, index) => (
-        <tr key={`week-${index}`}>
-          {completeDays.slice(index * 7, (index + 1) * 7)}
-        </tr>
-      )
-    );
+    return Array.from({ length: completeDays.length / 7 }, (_, index) => (
+      <tr key={`week-${index}`}>
+        {completeDays.slice(index * 7, (index + 1) * 7)}
+      </tr>
+    ));
+  };
 
-    return weeks;
+  const handlePrevMonth = () => {
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
+    );
+  };
+
+  const handleNextMonth = () => {
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
+    );
   };
 
   return (
     <Container>
       <div className="header-controls">
-        <Button
-          onClick={() =>
-            setCurrentDate(
-              new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
-            )
-          }
-        >
-          Prev
-        </Button>
+        <Button onClick={handlePrevMonth}>Prev</Button>
         <h2>{getMonthYearString(currentDate)}</h2>
-        <Button
-          onClick={() =>
-            setCurrentDate(
-              new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
-            )
-          }
-        >
-          Next
-        </Button>
+        <Button onClick={handleNextMonth}>Next</Button>
       </div>
       <table>
         <thead>

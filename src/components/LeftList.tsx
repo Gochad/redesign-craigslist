@@ -1,6 +1,7 @@
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import Calendar from "./Calendar";
 import linksData from "../data/panel-links.json";
 import { LinkData } from "./types";
@@ -23,7 +24,7 @@ const menuStyles = {
   bmMenuWrap: {
     position: "fixed",
     height: "100%",
-    width: "350px",
+    width: "370px",
   },
   bmMenu: {
     background: "#39004d",
@@ -45,10 +46,6 @@ const menuStyles = {
     color: "#d1d1d1",
     transition: "color 0.3s ease, transform 0.3s ease",
   },
-  bmItemHover: {
-    color: "white",
-    transform: "translateX(10px)",
-  },
   bmOverlay: {
     background: "rgba(0, 0, 0, 0.3)",
   },
@@ -57,13 +54,26 @@ const menuStyles = {
   },
 };
 
+const StyledLink = styled(Link)`
+  display: block;
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: #d1d1d1;
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    color: white;
+    transform: translateX(10px);
+  }
+`;
+
 const LeftList = () => {
   return (
     <Menu styles={menuStyles}>
       {(linksData as LinkData[]).map((link) => (
-        <Link to={link.to} className="menu-item" key={link.to}>
+        <StyledLink to={link.to} key={link.to}>
           {link.label}
-        </Link>
+        </StyledLink>
       ))}
       <Calendar />
     </Menu>
