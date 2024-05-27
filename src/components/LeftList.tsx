@@ -24,20 +24,19 @@ const menuStyles = {
   bmMenuWrap: {
     position: "fixed",
     height: "100%",
-    width: "370px",
+    width: "380px",
   },
   bmMenu: {
     background: "#39004d",
     padding: "2em",
     fontSize: "1.15em",
-    overflow: "hidden",
+    overflowY: "auto",
   },
   bmMorphShape: {
     fill: "#373a47",
   },
   bmItemList: {
     color: "#b8b7ad",
-    padding: "0.8em",
   },
   bmItem: {
     display: "block",
