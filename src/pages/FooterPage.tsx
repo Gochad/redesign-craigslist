@@ -1,9 +1,10 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
-import PageLayout from './PageLayout';
-import footerData from '../data/footer.json';
-import logo from '../images/logo.avif';
+import React from "react";
+import { useParams } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
+import PageLayout from "./PageLayout";
+import footerData from "../data/footer.json";
+import logo from "../images/logo.avif";
+import { colors } from "../styles/colors";
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -15,7 +16,7 @@ const ContentContainer = styled.div`
   text-align: center;
   max-width: 800px;
   margin: auto;
-  background: #f8f9fa;
+  background: ${colors.fstBright};
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   color: #333;
@@ -23,7 +24,7 @@ const ContentContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  color: #007bff;
+  color: ${colors.fstDarkViolet};
   margin-bottom: 20px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 `;
@@ -50,10 +51,12 @@ const Page = () => {
   const { pageName } = useParams();
 
   const getPageData = (pageName: string | undefined) => {
-    return footerData.find(p => p.link === '/' + pageName) || {
-      content: 'Welcome to Craigslist Redesigned!',
-      image: logo
-    };
+    return (
+      footerData.find((p) => p.link === "/" + pageName) || {
+        content: "Welcome to Craigslist Redesigned!",
+        image: logo,
+      }
+    );
   };
 
   const { content, image } = getPageData(pageName);
@@ -61,7 +64,11 @@ const Page = () => {
   return (
     <PageLayout>
       <ContentContainer>
-        <Title>{pageName ? pageName.charAt(0).toUpperCase() + pageName.slice(1) : 'Home'}</Title>
+        <Title>
+          {pageName
+            ? pageName.charAt(0).toUpperCase() + pageName.slice(1)
+            : "Home"}
+        </Title>
         <ContentText>{content}</ContentText>
         <StyledImage src={image} />
       </ContentContainer>

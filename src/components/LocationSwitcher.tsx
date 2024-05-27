@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Select, { components } from 'react-select';
+import Select, { components } from "react-select";
 import locationsData from "../data/location.json";
 import { Location } from "./types";
 
@@ -47,13 +47,15 @@ const LocationSwitcher = () => {
   }, []);
 
   function generateOptions(location: Location, level: number = 0): any[] {
-    let res = [{
-      value: location.id,
-      label: location.name,
-      level: level
-    }];
+    let res = [
+      {
+        value: location.id,
+        label: location.name,
+        level: level,
+      },
+    ];
     if (location.children) {
-      location.children.forEach(child => {
+      location.children.forEach((child) => {
         res = [...res, ...generateOptions(child, level + 1)];
       });
     }
@@ -63,21 +65,21 @@ const LocationSwitcher = () => {
   const customStyles = {
     control: (provided: any) => ({
       ...provided,
-      minWidth: '200px',
+      minWidth: "200px",
     }),
     menu: (provided: any) => ({
       ...provided,
-      width: '200px'
+      width: "200px",
     }),
     option: (styles: any, { data }: any) => {
       return {
         ...styles,
         paddingLeft: `${20 + data.level * 10}px`,
-        display: 'flex',
-        alignItems: 'center',
-        fontWeight: data.level === 0 ? 'bold' : 'normal',
+        display: "flex",
+        alignItems: "center",
+        fontWeight: data.level === 0 ? "bold" : "normal",
       };
-    }
+    },
   };
 
   return (

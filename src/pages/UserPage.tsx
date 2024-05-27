@@ -35,7 +35,7 @@ const StyledContainer = styled.div`
   width: 90%;
   max-width: 400px;
   margin: 50px auto;
-  background: linear-gradient(145deg, #f8faff, #dfe9f3);
+  background: ${colors.sndBright};
   border: 1px solid #d1d1d1;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;

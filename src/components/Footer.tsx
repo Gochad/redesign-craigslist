@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import footerData from "../data/footer.json";
+import { colors } from "../styles/colors";
 
 const Container = styled.footer`
-  background-color: #39004d;
+  background-color: ${colors.fstDarkViolet};
   color: white;
   text-align: center;
   padding: 20px;
@@ -47,9 +48,7 @@ const Footer = () => {
     <Container>
       {footerData.map((item, index) => (
         <Elem key={index}>
-          <StyledLink to={item.link}>
-            {item.text}
-          </StyledLink>
+          <StyledLink to={item.link}>{item.text}</StyledLink>
         </Elem>
       ))}
     </Container>
