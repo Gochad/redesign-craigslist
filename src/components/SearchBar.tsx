@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, ChangeEvent } from "react";
+import React, { useState, useRef, ChangeEvent } from "react";
 import styled from "styled-components";
 import { debounce } from "lodash";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
