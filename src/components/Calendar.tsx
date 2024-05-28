@@ -3,12 +3,13 @@ import styled from "styled-components";
 import { colors } from "../styles/colors";
 
 const Container = styled.div`
-  margin: 20px auto;
-  width: 110%;
+  margin: 50px auto;
+  width: 100%;
 
   table {
     width: 100%;
     border-collapse: collapse;
+    background-color: ${colors.lilac};
   }
 
   th,
@@ -21,12 +22,14 @@ const Container = styled.div`
     padding: 2px;
   }
 
-  td {
-    color: red;
+  th {
+    background-color: ${colors.lightLilac};
+    color: ${colors.fstDarkViolet};
+    padding: 5px 3px 5px;
   }
 
   .emptyDay {
-    background-color: ${colors.pastelLilac};
+    background-color: ${colors.darkLilac};
   }
 
   .header-controls {
@@ -45,7 +48,7 @@ const Container = styled.div`
 `;
 
 const StyledLink = styled.a`
-  color: ${colors.intenseLilac};
+  color: ${colors.fstDarkViolet};
   text-decoration: none;
   display: block;
   padding: 5px;
