@@ -11,11 +11,18 @@ const Container = styled.div`
     border-collapse: collapse;
   }
 
-  th, td {
+  th,
+  td {
     border: 1px solid #ccc;
     text-align: center;
+    color: #ccc;
+    font-size: 1.25rem;
     min-width: 32px;
     padding: 2px;
+  }
+
+  td {
+    color: red;
   }
 
   .emptyDay {
@@ -83,13 +90,31 @@ const Button = styled.button`
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-  const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+  const firstDayOfMonth = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth(),
+    1
+  );
+  const lastDayOfMonth = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    0
+  );
 
   const getMonthYearString = (date: Date) => {
     const months = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
     ];
     return `${months[date.getMonth()]} ${date.getFullYear()}`;
   };
@@ -99,11 +124,15 @@ const Calendar = () => {
     const lastDate = lastDayOfMonth.getDate();
 
     const days = Array.from({ length: firstDay }, (_, index) => (
-      <td key={`empty-start-${index}`} className="emptyDay">&nbsp;</td>
+      <td key={`empty-start-${index}`} className="emptyDay">
+        &nbsp;
+      </td>
     )).concat(
       Array.from({ length: lastDate }, (_, index) => {
         const day = index + 1;
-        const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+        const dateStr = `${currentDate.getFullYear()}-${String(
+          currentDate.getMonth() + 1
+        ).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
         return (
           <td key={day}>
             <StyledLink href={`/date/${dateStr}`}>{day}</StyledLink>
@@ -115,7 +144,9 @@ const Calendar = () => {
     const extraDays = (7 - (days.length % 7)) % 7;
     const completeDays = days.concat(
       Array.from({ length: extraDays }, (_, index) => (
-        <td key={`empty-end-${index}`} className="emptyDay">&nbsp;</td>
+        <td key={`empty-end-${index}`} className="emptyDay">
+          &nbsp;
+        </td>
       ))
     );
 
@@ -127,11 +158,15 @@ const Calendar = () => {
   };
 
   const handlePrevMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1));
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
+    );
   };
 
   const handleNextMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1));
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
+    );
   };
 
   return (
