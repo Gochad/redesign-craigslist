@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Calendar from "./Calendar";
 import linksData from "../data/panel-links.json";
 import { LinkData } from "./types";
+import { colors } from "../styles/colors";
 
 const menuStyles = {
   bmBurgerButton: {
@@ -27,7 +28,7 @@ const menuStyles = {
     width: "380px",
   },
   bmMenu: {
-    background: "#39004d",
+    background: `${colors.fstDarkViolet}`,
     padding: "2em",
     fontSize: "1.15em",
     overflowY: "auto",
@@ -49,7 +50,7 @@ const menuStyles = {
     background: "rgba(0, 0, 0, 0.3)",
   },
   bmBurgerBars: {
-    background: "#39004d",
+    background: `${colors.fstDarkViolet}`,
   },
 };
 

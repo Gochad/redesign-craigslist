@@ -6,4 +6,6 @@ export const colors = {
   intenseLilac: "#af43c6",
   lightLilac: "#cc95d8",
   pastelLilac: "#ba9dc0",
+  fstBright: "#f8f9fa",
+  sndBright: "#f7f7f7",
 };

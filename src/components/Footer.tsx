@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import footerData from "../data/footer.json";
+import { colors } from "../styles/colors";
 
 const Container = styled.footer`
-  background-color: #39004d;
+  background-color: ${colors.fstDarkViolet};
   color: white;
   text-align: center;
   padding: 20px;
