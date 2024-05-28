@@ -16,6 +16,8 @@ const Container = styled.div`
   td {
     border: 1px solid #ccc;
     text-align: center;
+    color: #ccc;
+    font-size: 1.25rem;
     min-width: 32px;
     padding: 2px;
   }
