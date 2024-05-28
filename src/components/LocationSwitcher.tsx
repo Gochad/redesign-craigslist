@@ -17,8 +17,8 @@ const StyledSelect = styled(Select)`
 `;
 
 const Dot = styled.span`
-  height: 6px;
-  width: 6px;
+  height: 4px;
+  width: 4px;
   margin-right: 5px;
   background-color: #000;
   border-radius: 50%;
